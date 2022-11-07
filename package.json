@@ -8,7 +8,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "python": "^0.0.4",
     "react": "^18.2.0"
   }
