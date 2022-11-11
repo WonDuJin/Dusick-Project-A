@@ -8,7 +8,6 @@
 import styled from 'styled-components';
 
 export const ButtonSetPurle = styled.button`
-  width: 142px;
   height: 50px;
   background-color: transparent;
   border: none;
@@ -18,6 +17,7 @@ export const ButtonSetPurle = styled.button`
   align-items: center;
   justify-content: center;
   transition: ease-out 0.3s;
+  padding: 0 10px;
   cursor: pointer;
   color: ${(props) => props.theme.color.black};
   &:hover {

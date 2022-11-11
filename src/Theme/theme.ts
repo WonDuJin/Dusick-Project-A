@@ -7,6 +7,7 @@ const color = {
   black: '#090015',
   white_gray: '#FBFAFC',
   gray: '#959595',
+  d_gray: '#505050',
   l_gray: '#D1D1D1',
   m_gray: '#848484',
   mint: '#5FC6AD',
