@@ -1,15 +1,19 @@
 import pymysql
 
+
 class dusickdb():
   def get_all():
     conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")
     cur = conn.cursor(pymysql.cursors.DictCursor) 
+
+    name = '동화약품'
     
-    cur.execute('SELECT code,market,name FROM companylist LIMIT 10')
+    cur.execute(f"SELECT open, high, low, close, volume FROM (SELECT code,market,name FROM companylist WHERE name={name})")
     
     dusick_lists = cur.fetchall()
     return dusick_lists
     
+
 
 # conn = None
 # cur = None
