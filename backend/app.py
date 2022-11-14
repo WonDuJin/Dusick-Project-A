@@ -4,16 +4,16 @@ from model import dusickdb
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
+@app.route('/companylist',methods=['POST','GET'])
 
-@app.route('/',methods=['POST','GET'])
 def test():
   data = dusickdb.get_all()
   return jsonify(data)
 
-@app.route('/api',methods =['GET','POST'])
+@app.route('/market',methods =['GET','POST'])
 def api():
   data = dusickdb.get_api()
-  return jsonify(data)
+  return data
 
 @app.route('/volume',methods =['GET','POST'])
 def volume():
