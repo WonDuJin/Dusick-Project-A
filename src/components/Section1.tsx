@@ -1,7 +1,7 @@
 import styled from '../Theme/themed-compoents';
 import { useState } from 'react';
 import { ButtonSetPurle } from '../common/ButtonPurple';
-import { DummyArr } from './Layout';
+import { DataArr } from './Layout';
 import theme, { Theme } from '../Theme/theme';
 
 const Section1Set = styled.section`
@@ -36,19 +36,41 @@ const Section1Set = styled.section`
   }
 `;
 
-const Section1 = ({ data }: { data: DummyArr }) => {
-  const [active, setActive] = useState<string>('active');
+type dataprops = {
+  data: DataArr[] | undefined;
+};
+
+const Section1 = (props: dataprops) => {
+  const [num, getNum] = useState<string>();
   const menus: string[] = ['거래상위', '상승', '하락', '👍추천종목'];
+  const { data } = props;
+  console.log(data);
+
+  const changecol = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { index } = (e.target as HTMLButtonElement).dataset;
+    getNum(index);
+  };
+
+  console.log(num);
   return (
     <>
       <Section1Set>
         <div>
           {menus.map((value, index) => {
-            return <ButtonSetPurle key={index}>{value}</ButtonSetPurle>;
+            return (
+              <ButtonSetPurle
+                data-index={index}
+                key={index}
+                className={String(index) === num ? 'active' : ' '}
+                onClick={changecol}
+              >
+                {value}
+              </ButtonSetPurle>
+            );
           })}
         </div>
         <div>
-          {data.map((value, index) => {
+          {/* {data.map((value, index) => {
             return (
               <div key={index}>
                 <span>{value.name}</span>
@@ -58,7 +80,8 @@ const Section1 = ({ data }: { data: DummyArr }) => {
                     <span
                       style={{
                         color: `${theme.color.red}`,
-                      }}>
+                      }}
+                    >
                       ▲{value.mvprice.toLocaleString()}
                     </span>
                     <span>
@@ -70,7 +93,8 @@ const Section1 = ({ data }: { data: DummyArr }) => {
                     <span
                       style={{
                         color: `${theme.color.blue}`,
-                      }}>
+                      }}
+                    >
                       ▼{value.mvprice.toLocaleString()}
                     </span>
                     <span>
@@ -80,7 +104,7 @@ const Section1 = ({ data }: { data: DummyArr }) => {
                 )}
               </div>
             );
-          })}
+          })} */}
         </div>
       </Section1Set>
     </>

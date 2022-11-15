@@ -20,7 +20,7 @@ export const ButtonSetPurle = styled.button`
   padding: 0 10px;
   cursor: pointer;
   color: ${(props) => props.theme.color.black};
-  &:hover {
+  &.active {
     background-color: ${(props) => props.theme.color.main};
     color: rgba(255, 255, 255, 1);
   }
