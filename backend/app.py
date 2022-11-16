@@ -11,10 +11,10 @@ def test():
   data = dusickdb.get_all()
   return jsonify(data)
 
-@app.route('/market',methods =['GET','POST'])
-def api():
+@app.route('/market/<market>',methods =['GET','POST'])
+def api(market):
   
-  data = dusickdb.get_api()
+  data = dusickdb.get_api(market)
   
   return data
 
