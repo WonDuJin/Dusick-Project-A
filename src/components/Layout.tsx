@@ -17,7 +17,12 @@ const Main = styled.main`
 
 interface DummyData {
   name: string;
-  type: string;
+  market: string;
+  high : number;
+  low : number;
+  open : number;
+  close : number;
+  type : string;
   price: number;
   state: string;
   mvprice: number;
@@ -38,6 +43,16 @@ const Layout = () => {
   //     return <h1>코스피</h1>;
   //   }
   // });
+
+  const Data =[
+    {
+      name,
+      market : '',
+
+
+    }
+  ]
+  
 
   const Dummys: DummyArr = [
     {
