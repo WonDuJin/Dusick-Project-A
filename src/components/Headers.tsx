@@ -62,7 +62,7 @@ const Header: React.FunctionComponent<outProps> = ({ getStockType }) => {
         <div>
           <select onChange={Typeget}>
             <option value={'kospi'}>KOSPI</option>
-            <option value={'kosdaq'}>KOSDAQ</option>
+            <option value={'kosdak'}>KOSDAQ</option>
           </select>
           <span></span>
         </div>

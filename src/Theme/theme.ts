@@ -14,6 +14,7 @@ const color = {
 };
 
 const fontSize = {
+  font_15: '1.5rem',
   font_18: '1.8rem',
   font_20: '2rem',
   font_28: '2.8rem',
