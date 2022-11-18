@@ -21,7 +21,7 @@ export const ButtonMint = styled.button<{ width: String }>`
   transition: ease 0.3s;
   cursor: pointer;
   color: ${(props) => props.theme.color.mint};
-  &:hover {
+  &.active {
     background-color: ${(props) => props.theme.color.mint};
     color: rgba(255, 255, 255, 1);
   }

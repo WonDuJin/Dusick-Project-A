@@ -10,11 +10,9 @@ def allSearch(market):
   data = DataRoute.markets(market)
   return jsonify(data)
 
-@app.route('/<market>/<name>',methods=['GET'])
-def getname(market,name):
-  data = DataRoute.getname(market,name)
-  return jsonify(data)
-
+@app.route('/getname',methods=['post'])
+def getname:
+  
 # @app.route('/<market>/volume',methods=['GET'])
 # def volume(market):
 #   data = DataRoute.volumes(market)

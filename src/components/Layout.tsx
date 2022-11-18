@@ -55,42 +55,29 @@ const Layout = () => {
   }, [StockType]);
   //header에서 받아오는 셀렉트값에 따른 다른 데이터 송출
 
-  console.log(data);
-
   let volumearr: any = [];
-  let pricehigharr: any = [];
-  // let pricearr: any = [];
   data.forEach((value) => {
-    volumearr.push([value[0], { close: value[1].close }]);
+    volumearr.push([
+      value[0],
+      {
+        gap: value[0].close - value[1].close,
+        percent: (value[0].close - value[1].close) / (value[0].close / 100),
+      },
+    ]);
   });
   const setvolume = volumearr.sort(
     (a: any, b: any) => b[0].volume - a[0].volume
   );
-  data.forEach((value) => {
-    pricehigharr.push([value[0], { gap: value[0].close - value[1].close }]);
-  });
-  const setprice = pricehigharr.sort((a: any, b: any) => b[1].gap - a[1].gap);
-  const setlowpirce = pricehigharr.sort(
-    (a: any, b: any) => a[1].gap - b[1].gap
-  );
-  // console.log(setlowpirce);
+
   return (
     <>
       <Main>
         <Header getStockType={getStockType}></Header>
         <div>
           {StockType === 'kospi' ? (
-            <Section1
-              volume={setvolume}
-              high={setprice}
-              low={setlowpirce}
-              stocks={StockType}></Section1>
+            <Section1 volume={setvolume} stocks={StockType}></Section1>
           ) : (
-            <Section1
-              volume={setvolume}
-              high={setprice}
-              low={setlowpirce}
-              stocks={StockType}></Section1>
+            <Section1 volume={setvolume} stocks={StockType}></Section1>
           )}
         </div>
       </Main>
