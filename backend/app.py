@@ -23,40 +23,51 @@ connection = pymysql.connect(
 def index():
     return "Index Page"
 
-@app.route('/companylist')
+@app.route('/companylist') 
+# 실행 방법 => http://127.0.0.1:5000/companylist?market=kosdak
 def companylist():
-    # * flask에 내장된 request 메소드로 요청의 쿼리스트링에 접근
+    # flask에 내장된 request 메소드로 요청의 쿼리스트링에 접근
     market = request.args.get('market', '')
     # code = request.args.get('code', '')
 
-    # * 요청받은 시장의 전체 종목 리스트를 조회
+    # 요청받은 시장의 전체 종목코드 리스트를 조회
     cur = connection.cursor(pymysql.cursors.DictCursor)
     cur.execute(f'SELECT code FROM companylist WHERE market="{market}"')
     all_list = cur.fetchall()
-    print(all_list)
+    # print(all_list)
     
-    # todo. 일단 거래량부터. 거래량은 가장 최근 한 개씩만 뽑아오면 됨
-    # * WITH절로 임시 테이블을 만들고 SELECT FROM 종목코드를 UNION ALL로 넣어서 조회하는 종목코드를 동적으로 넣어야 됨
+    '''참고용 SQL문
+    WITH temp_table AS (
+        SELECT * FROM kosdak_000250_d WHERE day='2022-01-28' union all
+        SELECT * FROM kosdak_003100_d WHERE day='2022-01-28' union all
+        SELECT * FROM kosdak_005990_d WHERE day='2022-01-28')
+        SELECT * FROM temp_table order by volume desc;
+    '''
+    
+    #* 일단 거래량부터. 거래량은 가장 최근 한 개씩만 뽑아오면 됨
+        # 반복문 앞에 `WITH temp_table AS (`
+        # 반복되어야 하는 내용은 SELECT FROM절 + union all
+            # 맨 마지막 반복에는 union all이 들어가면 안됨
+        # 반복문 뒤에 `SELECT * FROM temp_table order by volume desc;`
+    # executemany 메서드는 INSERT문에만 쓸 수 있는 게 아닌가 싶다
 
-    # WITH temp_table AS (
-    # SELECT * FROM kosdak_000250_d WHERE day='2022-01-28' union all
-    # SELECT * FROM kosdak_003100_d WHERE day='2022-01-28' union all
-    # SELECT * FROM kosdak_005990_d WHERE day='2022-01-28' union all)
-    # SELECT  *  FROM  temp_table order by volume desc;
-
-    # todo. 맨 마지막 반복
-    # * 반복문에서 특정 순서에만 다른 동작을 실행하고 싶으면 안에 조건문을 넣으면 되지 않을까? 
+    # range(): 입력받은 숫자에 해당하는 범위의 값을 반복 가능한 객체로 만들어 리턴한다
+    # len(): 리스트 안의 요소 개수를 리턴한다
+    code=[]
     for i in range(len(all_list)):
-        code = all_list[i]["code"]
-        cur.execute ('''
+        codeindex = all_list[i]["code"]
+        code.append(f"{market}_{codeindex}_m")
+        """ cur.execute ('''
         SELECT * FROM {market}_{code}_m
         LIMIT 10;'''
-        .format(market=market, code=code))
+        .format(market=market, code=code)) """
+    
 
+    # connection.commit()
+    # api = cur.fetchall()
+    # df = pd.DataFrame(api)
+    # print(df)
 
-    """ connection.commit()
-    api = cur.fetchall()
-    df = pd.DataFrame(api)
-    print(df)
-
-  return jsonify(df) """
+    print(code)
+    return "asdfasdf"
+    """ jsonify(df) """
