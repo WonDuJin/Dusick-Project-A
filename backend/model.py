@@ -1,90 +1,62 @@
-import pymysql.cursors
-import pandas as pd
-import numpy as np
-from IPython.display import display
-from flask import Flask,jsonify,request
-from dbconnection import db_connection
+import pymysql
 
-db = db_connection
-
-class DataRoute():
-  def markets(market):
-    cur = db.cursor(pymysql.cursors.DictCursor)
-    cur.execute(f"SELECT market,code,name FROM CompanyList WHERE market = '{market}' order by rand() LIMIT 28")
-    res = cur.fetchall()
-    data_stack = list()
-    for i in range(len(res)):
-      code = res[i]["code"]
-      market = res[i]["market"]
-      cur.execute(f'SELECT companylist.code AS code,market,name,high,low,close,volume,day FROM {market}_{code}_d AS api INNER JOIN companylist ON companylist.code = api.code WHERE day BETWEEN date("2022-01-27") AND date("2022-01-28")+1 ORDER BY day DESC LIMIT 2')
-      res2 = cur.fetchall()
-      data_stack.append(res2)
-    return data_stack
-  
-  
-  def getname(market,name):
-    cur = db.cursor(pymysql.cursors.DictCursor)
-    cur.execute(f"SELECT market,code,name FROM CompanyList WHERE NAME = '{name}'")
-    res = cur.fetchall()
-    data_stack = list()
-    for i in range(len(res)):
-      code = res[i]["code"]
-      market = res[i]["market"]
-      cur.execute(f'SELECT market,name,open,high,low,close,volume,day  FROM {market}_{code}_m as api INNER JOIN companylist ON companylist.code = api.code ORDER BY DAY DESC LIMIT 2')
-      res2 = cur.fetchall()
-      data_stack.append(res2)
-    return data_stack
-
-    # cur = db.cursor(pymysql.cursors.DictCursor)
-    # cur.execute(f"SELECT market,code,name FROM CompanyList WHERE market = '{market}' LIMIT 20")
-    # res = cur.fetchall()
-    # data_stack = list()
-    # for i in range(len(res)):
-    #   code = res[i]["code"]
-    #   market = res[i]["market"]
-    #   cur.execute(f'SELECT market,name,open,high,low,close,volume,day  FROM {market}_{code}_d as api INNER JOIN companylist ON companylist.code = api.code ORDER BY DAY DESC LIMIT 2')
-    #   res2 = cur.fetchall()
-    #   data_stack.append(res2)
-  # def volumes(market):
-  #   cur = db.cursor(pymysql.cursors.DictCursor)
-  #   cur.execute(f"SELECT market,code,name FROM CompanyList WHERE market = '{market}' LIMIT 20")
-  #   res = cur.fetchall()
-  #   data_stack = list()
-  #   for i in range(len(res)):
-  #     code = res[i]["code"]
-  #     market = res[i]["market"]
-  #     # print([code],[market])      
-      
-  #     cur.execute(f'SELECT name,volume,day  FROM {market}_{code}_d as api INNER JOIN companylist ON companylist.code = api.code where day = "2022-01-28" LIMIT 1')
-  #     res2 = cur.fetchall()
-  #     data_stack.append(res2)
-  #     # df = pd.DataFrame(res2)
-  #     # print(df)
-  #   # display(pd.DataFrame(res))
-  #   return data_stack
-  
-  
-  
-    # def get_api(market): // ★1. 함수이름
-    # conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")
-    # cur = conn.cursor(pymysql.cursors.DictCursor)
-
-    # #프론트에서 이제 이름을 받아오는 걸 설정해주면 됨   
+class dusickdb():
+  def get_all():
+    conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+        
+    #SQL문으로 Companylist 전체 DB 조회"
+    cur.execute(f'SELECT code,market,name FROM companylist')
+    dusick_lists = cur.fetchall()   
     
-    # #SQL문으로 Companylist DB 조회"
-    # cur.execute(f'SELECT code,market,name FROM companylist WHERE market="{market}" LIMIT 10')
-    # dusick_lists = cur.fetchall() //★2. 조회한 데이터를 변수에 담아준다
+    return dusick_lists 
+
+  
+  def get_api():
+    conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+
+    #프론트에서 이제 이름을 받아오는 걸 설정해주면 됨    
+
+    #SQL문으로 Companylist DB 조회"
+    cur.execute(f'SELECT code,market,name FROM companylist WHERE market="{market}"')
+    dusick_lists = cur.fetchall()
+
+    #조회한 DB에서 code, market, name을 변수로 지정, 반복문을 사용하여 변수에 code의 값을 저장
+
+    for i in range(len(dusick_lists)):
+      code = dusick_lists[i]["code"]
+      market = dusick_lists[0]["market"]
+      markettype = market.upper()   
+    
+    # 문자리터럴로 변수를 sql문에 입력하여 DB 조회 출력
+      cur.execute(f'SELECT open,high,low,close,volume FROM {markettype}_{code}_m LIMIT 10')
+      api = cur.fetchall()
+
+      #프린트에서는 찍히는 데 값이 출력이 되는데 브라우저에서는 출력이 안되는 현상 발생
+      print(api)
+
+    return api
+
+  # def get_volume():
+  #   conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")
+  #   cur = conn.cursor(pymysql.cursors.DictCursor)
+
+  #   #SQL문으로 Companylist DB 조회"
+    
+  #   cur.execute(f'SELECT code,market,name FROM companylist')
+  #   dusick_lists = cur.fetchall()
+  #   #조회한 DB에서 code, market, name을 변수로 지정
+  #   code = dusick_lists[0]["code"]
+  #   market = dusick_lists[0]["market"]
+  #   markettype = market.upper()
+  #   name = dusick_lists[0]["name"]
+  #   data = [[code],[market]]
+  #   print(data)
     
 
-    # #조회한 DB에서 code, market, name을 변수로 지정
-    # data_stack = list()★3. 빈배열 선언
-    # for i in range(len(dusick_lists)): //★3. for문을 돌림 len(조회한데이터를 담은 변수)
-    #   code = dusick_lists[i]["code"] // 필드명이 코드인 데이터를담음
-    #   market = dusick_lists[i]["market"] //필드명이 마켓인 데이터를 담음
-    #   # print([code],[market]) //★4. 일단 찍어본다(아마 쭈르르르륵 나올거당)
-      
-    # cur.execute(f'ALTER TABLE {market}_{code}_m ADD code VARCHAR(15) DEFAULT "{code}"')
-    # conn.commit() ★5. ALTER문으로 필드를 넣어준다 
-    # 데이터가 들어가는 예시 ex) ALTER TABLE KOSPI_000020_m code VARCHAR(15) DEFAULT "000020"
-    # ★7. DB에 들어가서 들어갔는지 확인해 준다.
-    # ★8. 데이터가 들어가면 저 쿼리문을 바꿔서 넣어준다 m,d,r,f => 다넣어준후 저 쿼리문은 버린다 (데이터가 또들어가면 안되기 때문에.)
+  #   # 문자리터럴로 변수를 sql문에 입력하여 DB 조회 출력
+  #   cur.execute(f'SELECT open,high,low,close,volume FROM {markettype}_{code}_m ORDER BY volume DESC LIMIT 10')
+  #   volume = cur.fetchall()
+
+  #   return volume
