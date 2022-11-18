@@ -51,27 +51,26 @@ def companylist():
         codeindex = all_list[i]["code"]
         select.append(f"SELECT * FROM {market}_{codeindex}_m UNION ALL")
 
-    print(*select, sep=', ') #대괄호 제거하고 배열 출력
+    # 배열 대괄호 제거하고 문자열로 출력
+    # unpack이라는 기능임
+    remove_braket = f"*{select}, sep=', '"
+    # print(remove_braket)
 
-    temp = ('''
+    """ temp = ('''
     WITH temp_table AS (
-    {select}
+    {remove_braket}
     ) SELECT * FROM temp_table order by volume desc;
-    '''.format(select=select))
-    # print(temp)
+    '''.format(select=remove_braket))
+    print(temp) """
 
-
-    """ cur.execute ('''
+    cur.execute ('''
     WITH temp_table AS (
-    
+    {remove_braket}
     SELECT * FROM temp_table order by volume desc;'''
-    .format(market=market, code=code)) """
-    
+    .format(remove_braket=remove_braket))
 
-    # connection.commit()
-    # api = cur.fetchall()
-    # df = pd.DataFrame(api)
-    # print(df)
-    # return jsonify(df)
-    
-    return "asdfasdfsaf"
+    connection.commit()
+    api = cur.fetchall()
+    df = pd.DataFrame(api)
+    print(df)
+    return jsonify(df)
