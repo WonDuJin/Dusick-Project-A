@@ -1,6 +1,6 @@
 import baseStyled, { ThemedStyledInterface } from 'styled-components';
 
-const color = {
+const color: {[key: string]: string} = {
   main: '#9A8AFF',
   red: '#FF005C',
   blue: '#0008CB',
@@ -13,7 +13,7 @@ const color = {
   mint: '#5FC6AD',
 };
 
-const fontSize = {
+const fontSize: {[key: string]: string} = {
   font_15: '1.5rem',
   font_18: '1.8rem',
   font_20: '2rem',
@@ -22,7 +22,7 @@ const fontSize = {
   font_50: '5rem',
 };
 
-const fontWeight = {
+const fontWeight: {[key: string]: string} = {
   DemiLight: '300',
   Regular: '400',
   Medium: '500',
