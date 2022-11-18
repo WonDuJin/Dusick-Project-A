@@ -35,14 +35,7 @@ def companylist():
     cur.execute(f'SELECT code FROM companylist WHERE market="{market}"')
     all_list = cur.fetchall()
     # print(all_list)
-    
-    '''참고용 SQL문
-    WITH temp_table AS (
-        SELECT * FROM kosdak_000250_d WHERE day='2022-01-28' union all
-        SELECT * FROM kosdak_003100_d WHERE day='2022-01-28' union all
-        SELECT * FROM kosdak_005990_d WHERE day='2022-01-28')
-        SELECT * FROM temp_table order by volume desc;
-    '''
+
     
     #* 일단 거래량부터. 거래량은 가장 최근 한 개씩만 뽑아오면 됨
         # 반복문 앞에 `WITH temp_table AS (`
@@ -53,21 +46,32 @@ def companylist():
 
     # range(): 입력받은 숫자에 해당하는 범위의 값을 반복 가능한 객체로 만들어 리턴한다
     # len(): 리스트 안의 요소 개수를 리턴한다
-    code=[]
+    select=[]
     for i in range(len(all_list)):
         codeindex = all_list[i]["code"]
-        code.append(f"{market}_{codeindex}_m")
-        """ cur.execute ('''
-        SELECT * FROM {market}_{code}_m
-        LIMIT 10;'''
-        .format(market=market, code=code)) """
+        select.append(f"SELECT * FROM {market}_{codeindex}_m UNION ALL")
+
+    print(*select, sep=', ') #대괄호 제거하고 배열 출력
+
+    temp = ('''
+    WITH temp_table AS (
+    {select}
+    ) SELECT * FROM temp_table order by volume desc;
+    '''.format(select=select))
+    # print(temp)
+
+
+    """ cur.execute ('''
+    WITH temp_table AS (
+    
+    SELECT * FROM temp_table order by volume desc;'''
+    .format(market=market, code=code)) """
     
 
     # connection.commit()
     # api = cur.fetchall()
     # df = pd.DataFrame(api)
     # print(df)
-
-    print(code)
-    return "asdfasdf"
-    """ jsonify(df) """
+    # return jsonify(df)
+    
+    return "asdfasdfsaf"
