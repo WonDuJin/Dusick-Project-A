@@ -37,6 +37,15 @@ def companylist():
     
     # todo. 일단 거래량부터. 거래량은 가장 최근 한 개씩만 뽑아오면 됨
     # * WITH절로 임시 테이블을 만들고 SELECT FROM 종목코드를 UNION ALL로 넣어서 조회하는 종목코드를 동적으로 넣어야 됨
+
+    # WITH temp_table AS (
+    # SELECT * FROM kosdak_000250_d WHERE day='2022-01-28' union all
+    # SELECT * FROM kosdak_003100_d WHERE day='2022-01-28' union all
+    # SELECT * FROM kosdak_005990_d WHERE day='2022-01-28' union all)
+    # SELECT  *  FROM  temp_table order by volume desc;
+
+    # todo. 맨 마지막 반복
+    # * 반복문에서 특정 순서에만 다른 동작을 실행하고 싶으면 안에 조건문을 넣으면 되지 않을까? 
     for i in range(len(all_list)):
         code = all_list[i]["code"]
         cur.execute ('''
