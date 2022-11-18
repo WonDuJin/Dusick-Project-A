@@ -1,13 +1,13 @@
 import pymysql.cursors
 import pandas as pd
 import numpy as np
-from IPython.display import display
-from flask import Flask,jsonify,request
+from flask import Flask,jsonify,request,json
 from dbconnection import db_connection
 
 db = db_connection
 
 class DataRoute():
+  
   def markets(market):
     cur = db.cursor(pymysql.cursors.DictCursor)
     cur.execute(f"SELECT market,code,name FROM CompanyList WHERE market = '{market}' order by rand() LIMIT 28")
@@ -21,49 +21,18 @@ class DataRoute():
       data_stack.append(res2)
     return data_stack
   
-  
-  def getname(market,name):
-    cur = db.cursor(pymysql.cursors.DictCursor)
-    cur.execute(f"SELECT market,code,name FROM CompanyList WHERE NAME = '{name}'")
-    res = cur.fetchall()
-    data_stack = list()
-    for i in range(len(res)):
-      code = res[i]["code"]
-      market = res[i]["market"]
-      cur.execute(f'SELECT market,name,open,high,low,close,volume,day  FROM {market}_{code}_m as api INNER JOIN companylist ON companylist.code = api.code ORDER BY DAY DESC LIMIT 2')
+  def getname():
+    if request.method=='POST':
+      datas = request.get_json()
+      value = datas['name']
+      cur = db.cursor(pymysql.cursors.DictCursor)
+      cur.execute(f"SELECT market,code,name FROM CompanyList WHERE NAME = '{value}'")
+      res = cur.fetchall()
+      code = res[0]["code"]
+      market = res[0]["market"]
+      cur.execute(f'SELECT market,name,open,high,low,close,volume,day  FROM {market}_{code}_m as api INNER JOIN companylist ON companylist.code = api.code ORDER BY DAY DESC LIMIT 1')
       res2 = cur.fetchall()
-      data_stack.append(res2)
-    return data_stack
-
-    # cur = db.cursor(pymysql.cursors.DictCursor)
-    # cur.execute(f"SELECT market,code,name FROM CompanyList WHERE market = '{market}' LIMIT 20")
-    # res = cur.fetchall()
-    # data_stack = list()
-    # for i in range(len(res)):
-    #   code = res[i]["code"]
-    #   market = res[i]["market"]
-    #   cur.execute(f'SELECT market,name,open,high,low,close,volume,day  FROM {market}_{code}_d as api INNER JOIN companylist ON companylist.code = api.code ORDER BY DAY DESC LIMIT 2')
-    #   res2 = cur.fetchall()
-    #   data_stack.append(res2)
-  # def volumes(market):
-  #   cur = db.cursor(pymysql.cursors.DictCursor)
-  #   cur.execute(f"SELECT market,code,name FROM CompanyList WHERE market = '{market}' LIMIT 20")
-  #   res = cur.fetchall()
-  #   data_stack = list()
-  #   for i in range(len(res)):
-  #     code = res[i]["code"]
-  #     market = res[i]["market"]
-  #     # print([code],[market])      
-      
-  #     cur.execute(f'SELECT name,volume,day  FROM {market}_{code}_d as api INNER JOIN companylist ON companylist.code = api.code where day = "2022-01-28" LIMIT 1')
-  #     res2 = cur.fetchall()
-  #     data_stack.append(res2)
-  #     # df = pd.DataFrame(res2)
-  #     # print(df)
-  #   # display(pd.DataFrame(res))
-  #   return data_stack
-  
-  
+      return res2
   
     # def get_api(market): // ★1. 함수이름
     # conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")

@@ -1,9 +1,9 @@
 import styled from '../Theme/themed-compoents';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { ButtonSetPurle } from '../common/ButtonPurple';
-import axios from 'axios';
+import axiosSet from '../common/axiosSet';
 import theme from '../Theme/theme';
-import { DataObject } from './Layout';
+import { getImpliedNodeFormatForFile } from 'typescript';
 
 const Section1Set = styled.section`
   width: 38%;
@@ -42,32 +42,9 @@ const Section1Set = styled.section`
   }
 `;
 
-const Section1 = ({
-  volume,
-  stocks,
-}: {
-  volume: object[][];
-  stocks: string;
-}) => {
+const Section1 = ({ volume }: { volume: any }) => {
   const [sorting, getSorting] = useState<string>('volume');
   const [index, getIndex] = useState<number>(0);
-  const [names, getNames] = useState<string>();
-  const [data, getData] = useState<DataObject[]>([]);
-
-  // useEffect(() => {
-  //   const getDatas = async () => {
-  //     try {
-  //       let response = await axios.get(
-  //         `http://127.0.0.1:5000/${stocks}/${names}`
-  //       );
-  //       getData(response.data);
-  //       console.log(data);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
-  //   getDatas();
-  // }, [names]);
 
   volume.sort((a: any, b: any) => b[index][sorting] - a[index][sorting]);
   const setVolume = () => {
@@ -83,14 +60,29 @@ const Section1 = ({
     getIndex(1);
   };
 
-  // console.log(volume);
+  // 1. 리턴확인
+  // 2.애니를 안썻을때 상황 파악
+
   const infosDom = useRef(null);
-  const getinfo = (e: React.MouseEvent<HTMLDivElement>) => {
+  const getinfo = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     const { name } = e.currentTarget.dataset;
-    getNames(name);
-  };
+    axiosSet
+      .post(
+        '/getnames',
+        {
+          name,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      });
+  }, []);
 
+  // console.log(Postdata);
   return (
     <>
       <Section1Set>
@@ -130,4 +122,4 @@ const Section1 = ({
   );
 };
 
-export default Section1;
+export default React.memo(Section1);

@@ -2,7 +2,7 @@ import styled from '../Theme/themed-compoents';
 import { useState, useEffect } from 'react';
 import Header from './Headers';
 import Section1 from './Section1';
-import axios from 'axios';
+import axiosSet from '../common/axiosSet';
 
 const Main = styled.main`
   width: 100%;
@@ -44,7 +44,7 @@ const Layout = () => {
     const getDatas = async () => {
       setLoading(true);
       try {
-        let response = await axios.get(`http://127.0.0.1:5000/${StockType}`);
+        let response = await axiosSet.get(`/${StockType}`);
         getData(response.data);
       } catch (e) {
         console.log(e);
@@ -68,16 +68,15 @@ const Layout = () => {
   const setvolume = volumearr.sort(
     (a: any, b: any) => b[0].volume - a[0].volume
   );
-
   return (
     <>
       <Main>
         <Header getStockType={getStockType}></Header>
         <div>
           {StockType === 'kospi' ? (
-            <Section1 volume={setvolume} stocks={StockType}></Section1>
+            <Section1 volume={setvolume}></Section1>
           ) : (
-            <Section1 volume={setvolume} stocks={StockType}></Section1>
+            <Section1 volume={setvolume}></Section1>
           )}
         </div>
       </Main>
