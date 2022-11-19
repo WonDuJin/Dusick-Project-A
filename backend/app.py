@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request
 import pymysql.cursors
-import pandas as pd
 
 # 실행
 # flask --debug run
@@ -66,11 +65,9 @@ def companylist():
     cur.execute ('''
     WITH temp_table AS (
     {remove_braket}
-    SELECT * FROM temp_table order by volume desc;'''
+    )SELECT * FROM temp_table order by volume desc;'''
     .format(remove_braket=remove_braket))
 
     connection.commit()
     api = cur.fetchall()
-    df = pd.DataFrame(api)
-    print(df)
-    return jsonify(df)
+    return jsonify(api)
