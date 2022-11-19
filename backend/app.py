@@ -46,7 +46,7 @@ def companylist():
     # *4. 배열 대괄호 제거하고 문자열로 출력
     # 1) unpack 방식은 print는 되는데 변수에 할당은 안됨.
         # print(*select, sep=', ')
-        # remove_braket = select.value(f"*{select}, sep=', '")
+        # remove_braket = f"*{select}, sep=', '"
     
     # 2) join 방식은 잘됨
         # remove_braket= ', '.join(select)
