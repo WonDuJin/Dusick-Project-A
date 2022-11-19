@@ -27,9 +27,9 @@ def companylist():
     # code = request.args.get('code', '')
 
     # *2. 해당 시장의 전체 종목코드 리스트를 데이터베이스 서버에 요청
-    cur = connection.cursor(pymysql.cursors.DictCursor)
-    cur.execute(f'SELECT code FROM companylist WHERE market="{market}" limit 10')
-    all_list = cur.fetchall()
+    cursor = connection.cursor(pymysql.cursors.DictCursor)
+    cursor.execute(f'SELECT code FROM companylist WHERE market="{market}"')
+    all_list = cursor.fetchall()
     # print(all_list)
 
     # *3. 종목코드 리스트를 SELECT문 형태로 가공
@@ -59,11 +59,11 @@ def companylist():
     temp = ('''
     WITH temp_table AS (
     {remove_braket}
-    ) SELECT * FROM temp_table order by volume desc limit 28;
+    ) SELECT * FROM temp_table order by volume desc LIMIT 28;
     '''.format(remove_braket=remove_braket))
-    cur.execute(temp)
+    cursor.execute(temp)
     connection.commit()
 
     # *6. 데이터베이스 서버에서 받아온 데이터를 클라이언트에게 응답
-    api = cur.fetchall()
+    api = cursor.fetchall()
     return jsonify(api)
