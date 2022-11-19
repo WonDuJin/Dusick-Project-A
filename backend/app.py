@@ -35,50 +35,35 @@ def companylist():
     # *3. 종목코드 리스트를 SELECT문 형태로 가공
     # range(): 입력받은 숫자에 해당하는 범위의 값을 반복 가능한 객체로 만들어 리턴한다
     # len(): 리스트 안의 요소 개수를 리턴한다
-    select=[]
+    select=[] # 저장용 배열
     for i in range(len(all_list)):
-        codeindex = all_list[i]["code"]
-        select.append(f"SELECT * FROM {market}_{codeindex}_m UNION ALL")
+        code_index = all_list[i-1]["code"] # 뒤에서 두번째까지만 반복
+        select.append(f"SELECT * FROM {market}_{code_index}_m UNION ALL")
+    code_last = all_list[-1]["code"] # 맨 뒤에 있는 항목
+    select.append(f"SELECT * FROM {market}_{code_last}_m")
+    
 
     # *4. 배열 대괄호 제거하고 문자열로 출력
-    # unpack 방식은 print는 되는데 변수에 할당은 안됨.
-    # print(*select, sep=', ')
-    # remove_braket = select.value(f"*{select}, sep=', '")
+    # 1) unpack 방식은 print는 되는데 변수에 할당은 안됨.
+        # print(*select, sep=', ')
+        # remove_braket = select.value(f"*{select}, sep=', '")
     
-    # join 방식은 잘됨
-    # remove_braket= ', '.join(select)
+    # 2) join 방식은 잘됨
+        # remove_braket= ', '.join(select)
 
-    # str 방식도 잘됨
-    remove_braket = str(select)[1:-1]
+    # 3) str 방식도 잘됨. 이걸로 채택.
+    remove_braket = str(select)[1:-1].replace("'", "").replace(",", "")
     # print(remove_braket)
 
-    # *5. 최종적으로 쿼리문 조립해서 데이터베이스 서버에 전달
-    """
-    all_list=[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-    select=[]
-
-    for i in range(len(all_list)):
-        codeindex = all_list[len(all_list)-1]
-        select.append(codeindex)
-    
-    print(select) # [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    """
-
+    # *5. 최종적으로 쿼리문 조립해서 데이터베이스 서버에 요청
     temp = ('''
     WITH temp_table AS (
     {remove_braket}
-    ) SELECT * FROM temp_table order by volume desc;
-    '''.format(select=remove_braket))
-    print(temp)
-
-    return 'asdf'
-
-"""     cur.execute ('''
-    WITH temp_table AS (
-    {remove_braket}
-    )SELECT * FROM temp_table order by volume desc;'''
-    .format(remove_braket=remove_braket))
-
+    ) SELECT * FROM temp_table order by volume desc limit 28;
+    '''.format(remove_braket=remove_braket))
+    cur.execute(temp)
     connection.commit()
+
+    # *6. 데이터베이스 서버에서 받아온 데이터를 클라이언트에게 응답
     api = cur.fetchall()
-    return jsonify(api) """
+    return jsonify(api)
