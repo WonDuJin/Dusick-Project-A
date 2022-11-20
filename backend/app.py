@@ -56,12 +56,12 @@ def companylist():
     # print(remove_braket)
 
     # *5. 최종적으로 쿼리문 조립해서 데이터베이스 서버에 요청
-    temp = ('''
+    query = ('''
     WITH temp_table AS (
     {remove_braket}
     ) SELECT * FROM temp_table order by volume desc LIMIT 28;
     '''.format(remove_braket=remove_braket))
-    cursor.execute(temp)
+    cursor.execute(query)
     connection.commit()
 
     # *6. 데이터베이스 서버에서 받아온 데이터를 클라이언트에게 응답
