@@ -1,6 +1,7 @@
 ### 좌측 표
 * 표시 항목: 종목이름(name), 시초가(open), 등락폭, 추천율
     * 등락폭 = 금일 종가(close) - 전일 종가(close) (금일 5만이고, 전일 4만이면 5만-4만=+1만으로, 1만원 상승임)
+    * 추천율 = {(고가(high) + 저가(low)) / 2} * 0.4
 
     * 조작 항목: 거래량순(volume), 상승순, 하락순, 추천율순
 
@@ -62,9 +63,11 @@ SELECT * FROM kosdak_031980_m WHERE day="2022-02-03"
 temp_name AS (SELECT name, code FROM companylist WHERE code=025320 OR code=029960 OR code=031980 OR code=021880 OR code=018680
 )
 SELECT * FROM temp_table
-LEFT JOIN temp_name
-WHERE temp_table.code = temp_name.code 
-ORDER BY volume DESC LIMIT 28;
+INNER JOIN temp_name
+ON temp_table.code = temp_name.code
+GROUP BY open,high,low,close, volume, day, temp_name.code
+ORDER BY volume DESC 
+ LIMIT 28;
 ```
 ```
 +-----+-------+-------+-------+-------+--------+------------+--------+--------------------------+--------+
