@@ -67,4 +67,3 @@ def companylist():
     # *6. 데이터베이스 서버에서 받아온 데이터를 클라이언트에게 응답
     api = cursor.fetchall()
     return jsonify(api)
-
