@@ -16,12 +16,7 @@ const Main = styled.main`
 `;
 
 interface DummyData {
-  name: string;
-  market: string;
-  high : number;
-  low : number;
-  open : number;
-  close : number;
+  name: string; 
   type : string;
   price: number;
   state: string;
@@ -44,14 +39,6 @@ const Layout = () => {
   //   }
   // });
 
-  const Data =[
-    {
-      name,
-      market : '',
-
-
-    }
-  ]
   
 
   const Dummys: DummyArr = [

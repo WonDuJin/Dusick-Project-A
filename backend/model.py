@@ -23,7 +23,7 @@ class dusickdb():
     
     
     #SQL문으로 Companylist DB 조회"
-    cur.execute(f'SELECT code,market,name FROM companylist WHERE market="{market}" LIMIT 10')
+    cur.execute(f'SELECT code,market,name FROM companylist WHERE market="{market}" LIMIT 28')
     dusick_lists = cur.fetchall()
     
 
@@ -32,17 +32,16 @@ class dusickdb():
     for i in range(len(dusick_lists)):
       code = dusick_lists[i]["code"]
       market = dusick_lists[i]["market"]
-      # print([code],[market])     
-      markettype = market.upper()
       
-      cur.execute(f'SELECT companylist.code AS code,market,name,open,high),low,close,volume,day FROM {market}_{code}_m as api INNER JOIN companylist ON companylist.code = api.code ORDER BY day DESC LIMIT 2')
+
+      cur.execute(f'WITH company AS (SELECT code, name, market FROM companylist WHERE market="{market}" ORDER BY rand() LIMIT 28), info AS (SELECT * FROM {market}_{code}_d WHERE day = "2022-01-28") SELECT company.code AS code,name,market,open,high,low,close,volume,ROUND((high+low)/2,1) AS MID, ROUND((((high+low)/2)*0.04),2) AS MedoMesu FROM info INNER JOIN company WHERE info.code = company.code')
       conn.commit()
-      day = cur.fetchall()    
+      day = cur.fetchall()
       data_stack.append(day)
       df = pd.DataFrame(data_stack)
       print(tabulate(df, headers='keys', tablefmt='fancy_grid',stralign='center', showindex=True))
     
-    return day
+    return data_stack
 
   def volume(market):
     conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")
@@ -57,7 +56,7 @@ class dusickdb():
       # print([code],[market])     
       markettype = market.upper()      
       
-      cur.execute(f'SELECT companylist.code AS code,market,name,high,low,close,volume,day FROM {market}_{code}_d AS api INNER JOIN companylist ON companylist.code = api.code WHERE day BETWEEN date("2022-01-27") AND date("2022-01-28")+1 ORDER BY day DESC LIMIT 2')
+      cur.execute(f'SELECT companylist.code AS code,market,name,open,high,low,close,volume,day, ROUND((high+low)/2,1) AS MID, ROUND((((high+low)/2)*0.04),2) AS MedoMesu FROM {market}_{code}_d AS api INNER JOIN companylist ON companylist.code = api.code WHERE day BETWEEN date("2022-01-27") AND date("2022-01-28")+1 ORDER BY day DESC LIMIT 2')
       conn.commit()
       volume = cur.fetchall()
       data_stack.append(volume)

@@ -15,6 +15,7 @@ def day(market):
   
   data = dusickdb.day(market)
   
+  
   return data
 
 @app.route('/<market>/volume',methods =['GET','POST'])
