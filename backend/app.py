@@ -22,7 +22,7 @@ def index():
 @app.route('/companylist') 
 # 실행 방법 => http://127.0.0.1:5000/companylist?market=kosdak
 def companylist():
-    # *1. flask에 내장된 request 메소드를 사용해서 클라이언트로부터 받은 요청의 쿼리스트링에 접근
+    # *1. flask에 내장된 request 객체에 접근해서 클라이언트로부터 받은 요청의 쿼리스트링을 가져옴
     market = request.args.get('market', '')
     # code = request.args.get('code', '')
 
