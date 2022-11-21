@@ -38,9 +38,9 @@ def companylist():
     select=[] # 저장용 배열
     for i in range(len(all_list)):
         code_index = all_list[i-1]["code"] # 뒤에서 두번째까지만 반복
-        select.append(f"SELECT * FROM {market}_{code_index}_m UNION ALL")
+        select.append(f'SELECT * FROM {market}_{code_index}_m WHERE day="2022-02-03" UNION ALL')
     code_last = all_list[-1]["code"] # 맨 뒤에 있는 항목
-    select.append(f"SELECT * FROM {market}_{code_last}_m")
+    select.append(f'SELECT * FROM {market}_{code_last}_m WHERE day="2022-02-03"')
     
 
     # *4. 배열 대괄호 제거하고 문자열로 출력
@@ -67,3 +67,4 @@ def companylist():
     # *6. 데이터베이스 서버에서 받아온 데이터를 클라이언트에게 응답
     api = cursor.fetchall()
     return jsonify(api)
+
