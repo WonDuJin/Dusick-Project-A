@@ -1,6 +1,4 @@
 import pymysql.cursors
-import pandas as pd
-import numpy as np
 from flask import Flask,jsonify,request,json
 from dbconnection import db_connection
 
@@ -10,13 +8,13 @@ class DataRoute():
   
   def markets(market):
     cur = db.cursor(pymysql.cursors.DictCursor)
-    cur.execute(f"SELECT market,code,name FROM CompanyList WHERE market = '{market}' order by rand() LIMIT 28")
+    cur.execute(f"SELECT market,code,name FROM CompanyList WHERE market = '{market}' ORDER BY RAND() LIMIT 28")
     res = cur.fetchall()
     data_stack = list()
     for i in range(len(res)):
       code = res[i]["code"]
       market = res[i]["market"]
-      cur.execute(f'SELECT companylist.code AS code,market,name,high,low,close,volume,day FROM {market}_{code}_d AS api INNER JOIN companylist ON companylist.code = api.code WHERE day BETWEEN date("2022-01-27") AND date("2022-01-28")+1 ORDER BY day DESC LIMIT 2')
+      cur.execute(f'SELECT companylist.code AS code,market,name,high,low,close,volume,day,ROUND((high+low)/2,1) AS MID, ROUND((((high+low)/2)*0.04),2) AS MedoMesu FROM {market}_{code}_d AS api INNER JOIN companylist ON companylist.code = api.code WHERE day BETWEEN date("2022-01-27") AND date("2022-01-28")+1 ORDER BY day DESC LIMIT 2')
       res2 = cur.fetchall()
       data_stack.append(res2)
     return data_stack

@@ -41,3 +41,13 @@ ol,
 ul {
   list-style: none;
 }
+input {
+  border: none;
+}
+input:focus,
+select:focus,
+option:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}

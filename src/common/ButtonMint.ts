@@ -7,8 +7,8 @@
 
 import styled from 'styled-components';
 
-export const ButtonMint = styled.button<{ width: String }>`
-  width: ${(props: any) => props.width};
+export const ButtonMint = styled.button`
+  width: 126px;
   height: 43px;
   height: 50px;
   background-color: transparent;

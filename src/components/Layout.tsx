@@ -6,7 +6,7 @@ import axiosSet from '../common/axiosSet';
 
 const Main = styled.main`
   width: 100%;
-  height: 964px;
+  height: 100vh;
   background-color: #fff;
   border-radius: 20px;
   overflow: hidden;
@@ -28,30 +28,35 @@ export interface DataObject {
   [index: number]: any; // Index Signature
 } // 배열안에있는 객체 프로퍼티 타입 선언
 
-// export interface Datalist extends Array<DataArr> {}
-//DummyData라는 객체를 배열로 확장
-
 const Layout = () => {
   const [StockType, setSTockType] = useState<string>('kospi');
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [data, getData] = useState<DataObject[]>([]);
+  const [HeaderNames, getHeaderNames] = useState<any>();
 
   const getStockType = (Type: string) => {
     setSTockType(Type);
   };
 
+  const setDatas = (names: any) => {
+    getData(names);
+  };
+
+  console.log(HeaderNames);
+
   useEffect(() => {
     const getDatas = async () => {
-      setLoading(true);
       try {
-        let response = await axiosSet.get(`/${StockType}`);
-        getData(response.data);
+        setLoading(true);
+        await axiosSet.get(`/${StockType}`).then((res) => {
+          getData(res.data);
+        });
       } catch (e) {
         console.log(e);
       }
+      setLoading(false);
     };
     getDatas();
-    setLoading(false);
   }, [StockType]);
   //header에서 받아오는 셀렉트값에 따른 다른 데이터 송출
 
@@ -68,12 +73,15 @@ const Layout = () => {
   const setvolume = volumearr.sort(
     (a: any, b: any) => b[0].volume - a[0].volume
   );
+
   return (
     <>
       <Main>
         <Header getStockType={getStockType}></Header>
         <div>
-          {StockType === 'kospi' ? (
+          {loading ? (
+            <h1>로딩중입니다.</h1>
+          ) : data && StockType === 'kospi' ? (
             <Section1 volume={setvolume}></Section1>
           ) : (
             <Section1 volume={setvolume}></Section1>

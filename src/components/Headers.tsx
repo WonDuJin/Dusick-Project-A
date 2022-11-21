@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import React, { useCallback, useState } from 'react';
+import axiosSet from '../common/axiosSet';
 
 const HeaderSet = styled.header`
   width: 100%;
@@ -14,17 +16,27 @@ const HeaderSet = styled.header`
   }
   & > div {
     position: relative;
+    display: flex;
+    align-items: center;
     & > span {
       width: 11px;
       height: 6.5px;
       background: url('./assets/Direction.png') center/cover no-repeat;
       position: absolute;
-      right: 15px;
+      right: 42px;
       top: 22px;
+    }
+    & > input[type='text'] {
+      background: ${(props) => props.theme.color.white_gray};
+      border: 1px solid ${(props) => props.theme.color.l_gray};
+      border-radius: 30px;
+      width: 463px;
+      height: 50px;
     }
     & > select {
       width: 113px;
       height: 50px;
+      margin-right: 30px;
       padding: 0 15px;
       border-radius: 30px;
       color: ${(props) => props.theme.color.gray};
@@ -50,10 +62,31 @@ interface outProps {
 //부모한테 받을 props를 정의함(자식에서 정의를 해놓아야 부모한테서 받을수 있나봄)
 
 const Header: React.FunctionComponent<outProps> = ({ getStockType }) => {
+  const [data, getData] = useState<any>();
   const Typeget = (e: React.ChangeEvent<HTMLSelectElement>) => {
     getStockType(e.target.value);
   };
   // select에 onChange가 일어날 때 select value  값을 부모 컴포넌트에 보냄
+  const getName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.currentTarget.value;
+    axiosSet
+      .post(
+        '/getnames',
+        {
+          name,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        return getData(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('시장에 맞는 종목을 검색해주세요.');
+      });
+  }, []);
 
   return (
     <>
@@ -65,6 +98,7 @@ const Header: React.FunctionComponent<outProps> = ({ getStockType }) => {
             <option value={'kosdak'}>KOSDAQ</option>
           </select>
           <span></span>
+          {/* <input type='text' onBlur={getName}></input> */}
         </div>
       </HeaderSet>
     </>

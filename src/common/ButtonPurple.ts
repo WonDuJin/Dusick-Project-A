@@ -14,10 +14,10 @@ export const ButtonSetPurle = styled.button`
   border-radius: 1rem;
   font-size: ${(props) => props.theme.fontSize.font_28};
   display: flex;
+  padding: 0 10px;
   align-items: center;
   justify-content: center;
   transition: ease-out 0.3s;
-  padding: 0 10px;
   cursor: pointer;
   color: ${(props) => props.theme.color.black};
   &.active {
