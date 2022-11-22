@@ -1,6 +1,7 @@
-import styled from '../Theme/themed-compoents';
+import styled from '../Theme/themed-components';
 import { useState, useEffect } from 'react';
 import Header from './Headers';
+import Loading from '../common/Loading';
 import Section1 from './Section1';
 import axiosSet from '../common/axiosSet';
 
@@ -10,10 +11,6 @@ const Main = styled.main`
   background-color: #fff;
   border-radius: 20px;
   overflow: hidden;
-  & > div {
-    display: flex;
-    justify-content: space-between;
-  }
 `;
 
 export interface DataObject {
@@ -32,17 +29,10 @@ const Layout = () => {
   const [StockType, setSTockType] = useState<string>('kospi');
   const [loading, setLoading] = useState<boolean>(true);
   const [data, getData] = useState<DataObject[]>([]);
-  const [HeaderNames, getHeaderNames] = useState<any>();
 
   const getStockType = (Type: string) => {
     setSTockType(Type);
   };
-
-  const setDatas = (names: any) => {
-    getData(names);
-  };
-
-  console.log(HeaderNames);
 
   useEffect(() => {
     const getDatas = async () => {
@@ -67,6 +57,8 @@ const Layout = () => {
       {
         gap: value[0].close - value[1].close,
         percent: (value[0].close - value[1].close) / (value[0].close / 100),
+        mid: value[1].mid,
+        medomesu: value[1].medomesu,
       },
     ]);
   });
@@ -78,15 +70,13 @@ const Layout = () => {
     <>
       <Main>
         <Header getStockType={getStockType}></Header>
-        <div>
-          {loading ? (
-            <h1>로딩중입니다.</h1>
-          ) : data && StockType === 'kospi' ? (
-            <Section1 volume={setvolume}></Section1>
-          ) : (
-            <Section1 volume={setvolume}></Section1>
-          )}
-        </div>
+        {loading ? (
+          <Loading></Loading>
+        ) : data && StockType === 'kospi' ? (
+          <Section1 volume={setvolume}></Section1>
+        ) : (
+          <Section1 volume={setvolume}></Section1>
+        )}
       </Main>
     </>
   );

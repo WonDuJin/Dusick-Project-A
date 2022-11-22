@@ -1,10 +1,9 @@
-import styled from '../Theme/themed-compoents';
+import styled from '../Theme/themed-components';
 import React, { useState, useCallback } from 'react';
 import Selectstock from '../common/SelectStock';
 import { ButtonSetPurle } from '../common/ButtonPurple';
 import { ButtonMint } from '../common/ButtonMint';
 import List from '../components/List';
-
 import theme from '../Theme/theme';
 
 const Section1Set = styled.section`
@@ -35,6 +34,12 @@ const Section1Set = styled.section`
       padding: 78px 86px;
       & > h1 {
         font-size: ${(props) => props.theme.fontSize.font_36};
+        & > span {
+          display: inline-block;
+          margin-left: 20px;
+          font-weight: ${(props) => props.theme.fontWeight.Bold};
+          font-size: ${(props) => props.theme.fontSize.font_28};
+        }
       }
       & > div:nth-child(2) {
         width: 100%;
@@ -152,29 +157,20 @@ const Section1 = ({ volume }: { volume: any }) => {
           getSorting('percent');
           getIndex(1);
           break;
+        case 'best':
+          getSorting('');
+          getIndex(0);
       }
     },
     [sorting, index]
   );
-  // const bestButton = () => {
-  //   volume = volume((value: any) => {
-  //     if (value.close > value.MID) {
-  //       return value;
-  //     }
-  //   });
-  //   getSorting('best');
-  //   getIndex(0);
-  // };
-
-  // bestButton();
-  // 탭 버튼 클릭시 종목 정렬
 
   // 종목 클릭시 종목 data-set 을 통해 서버로부터 종목 정보 요청
   const setData = (names: any) => {
     getNameData(names);
   };
 
-  console.log(nameData);
+  // console.log(nameData);
   const getCount = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     getTotalStock(e.currentTarget.value);
   }, []);
@@ -207,7 +203,6 @@ const Section1 = ({ volume }: { volume: any }) => {
     { id: 1, value: 'volume', con: '거래량 순' },
     { id: 2, value: 'gap', con: '상승 순' },
     { id: 3, value: 'percent', con: '증감률 순' },
-    { id: 4, value: 'best', con: '추천 순' },
   ];
   const btn2: btn2[] = [
     { id: 1, value: '매수' },
@@ -255,7 +250,25 @@ const Section1 = ({ volume }: { volume: any }) => {
         {nameData !== undefined ? (
           <div>
             <div>
-              <h1>{nameData[0].name}</h1>
+              {Number(nameData[0].mid) >=
+              Number(nameData[1].mid) + Number(nameData[1].medomesu) ? (
+                <h1>
+                  {nameData[0].name}
+                  <span style={{ color: `${theme.color.red}` }}>
+                    종목추천(매도)
+                  </span>
+                </h1>
+              ) : Number(nameData[0].mid) <=
+                Number(nameData[1].mid) - Number(nameData[1].medomesu) ? (
+                <h1>
+                  {nameData[0].name}
+                  <span style={{ color: `${theme.color.blue}` }}>
+                    종목추천(매수)
+                  </span>
+                </h1>
+              ) : (
+                <h1>{nameData[0].name}</h1>
+              )}
               <div>
                 <div>
                   <span>종가</span>
