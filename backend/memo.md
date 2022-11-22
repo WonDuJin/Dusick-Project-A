@@ -60,14 +60,13 @@ SELECT * FROM kosdak_021880_m WHERE day="2022-02-03" UNION ALL
 SELECT * FROM kosdak_025320_m WHERE day="2022-02-03" UNION ALL
 SELECT * FROM kosdak_031980_m WHERE day="2022-02-03"
 ),
-temp_name AS (SELECT name, code FROM companylist WHERE code=025320 OR code=029960 OR code=031980 OR code=021880 OR code=018680
-)
-SELECT * FROM temp_table
-INNER JOIN temp_name
-ON temp_table.code = temp_name.code
-GROUP BY open,high,low,close, volume, day, temp_name.code
-ORDER BY volume DESC 
- LIMIT 28;
+temp_name AS (SELECT name, code FROM companylist WHERE
+code=025320 OR
+code=029960 OR
+code=031980 OR
+code=021880 OR
+code=018680
+) SELECT * FROM temp_table INNER JOIN temp_name ON temp_table.code = temp_name.code ORDER BY volume DESC LIMIT 28;
 ```
 ```
 +-----+-------+-------+-------+-------+--------+------------+--------+--------------------------+--------+
