@@ -70,8 +70,8 @@ def companylist():
     query = ('''
     WITH temp_table AS (
     {remove_braket}
-    ) SELECT * FROM temp_table order by volume desc LIMIT 28;
-    '''.format(remove_braket=remove_braket))
+    ) SELECT * FROM temp_table order by volume;
+    '''.format(remove_braket=remove_braket(select)))
     cursor.execute(query)
     connection.commit()
 
