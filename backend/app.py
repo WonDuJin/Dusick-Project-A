@@ -47,9 +47,9 @@ def companylist():
     query_or=[] # 저장용 배열
     for i in range(len(all_list)-1): # 뒤에서 두번째까지만 반복
         code_index = all_list[i]["code"]
-        query_or.append(f'{code_index} OR')
+        query_or.append(f'code={code_index} OR')
     code_last = all_list[-1]["code"] # 맨 뒤에 있는 항목
-    query_or.append(code_last)
+    query_or.append(f'code={code_index}')
     
 
     # *4. 배열 대괄호 제거하고 문자열로 출력
@@ -68,13 +68,16 @@ def companylist():
 
     # *5. 최종적으로 쿼리문 조립해서 데이터베이스 서버에 요청
     query = ('''
-    WITH temp_table AS (
-    {remove_braket}
-    ) SELECT * FROM temp_table order by volume;
-    '''.format(remove_braket=remove_braket(select)))
-    cursor.execute(query)
+    WITH temp_table AS ({select}),
+    temp_name AS (SELECT name, code FROM companylist WHERE {query_or})
+    SELECT * FROM temp_table INNER JOIN temp_name ON temp_table.code = temp_name.code ORDER BY volume DESC LIMIT 28;
+    '''.format(select=remove_braket(select), query_or=remove_braket(query_or)))
+
+    return jsonify(query)
+
+    """ cursor.execute(query)
     connection.commit()
 
     # *6. 데이터베이스 서버에서 받아온 데이터를 클라이언트에게 응답
     api = cursor.fetchall()
-    return jsonify(api)
+    return jsonify(api) """
