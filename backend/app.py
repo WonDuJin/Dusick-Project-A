@@ -64,13 +64,17 @@ def companylist():
     def remove_braket(braket):
         return str(braket)[1:-1].replace("'", "").replace(",", "")
 
-    # return jsonify(remove_braket(select))
+    return jsonify(remove_braket(query_or))
 
     # *5. 최종적으로 쿼리문 조립해서 데이터베이스 서버에 요청
-    query = ('''
+    """ query = ('''
     WITH temp_table AS ({select}),
     temp_name AS (SELECT name, code FROM companylist WHERE {query_or})
     SELECT * FROM temp_table INNER JOIN temp_name ON temp_table.code = temp_name.code ORDER BY volume DESC LIMIT 28;
+    '''.format(select=remove_braket(select), query_or=remove_braket(query_or))) """
+
+    query = ('''
+    WITH temp_name AS (SELECT name, code FROM companylist WHERE {query_or}) SELECT * FROM temp_table INNER JOIN temp_name ON temp_table.code = temp_name.code ORDER BY volume DESC LIMIT 28;
     '''.format(select=remove_braket(select), query_or=remove_braket(query_or)))
 
     return jsonify(query)
