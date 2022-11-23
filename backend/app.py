@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from model import dusickdb
 
 
-
+#라우터
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 @app.route('/companylist',methods=['POST','GET'])
@@ -11,14 +11,14 @@ def test():
   return jsonify(data)
 
 @app.route('/<market>',methods =['GET','POST'])
-def day(market):
+def market(market):
   
-  data = dusickdb.day(market)
+  data = dusickdb.market(market)
   
   
   return data
 
-@app.route('/<market>/volume',methods =['GET','POST'])
-def volume(market):
-  data = dusickdb.volume(market)
+@app.route('/<market>/info',methods =['GET','POST'])
+def info(market):
+  data = dusickdb.info(market)
   return data

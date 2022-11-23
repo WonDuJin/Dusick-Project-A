@@ -1,0 +1,92 @@
+
+/*Layout*/
+.main{
+width: 100%;
+height: 964px;
+background-color: #fff;
+border-radius: 20px;
+overflow: hidden;
+}
+.main > div{
+  display: flex;
+  justify-content: space-between;
+}
+
+/*Header*/
+.header{
+  width: 100%;
+  height: 127px;
+  padding: 0 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+}
+.header > img{
+  width: 161px;
+  height: 66.4px;
+}
+.header > div {
+  position: relative;
+}
+.header > div > span{
+  width: 11px;
+  height: 6.5px;
+  background: url('../../public/assets/Direction.png') center/cover no-repeat;
+  position: absolute;
+  right: 15px;
+  top: 22px;
+}
+.header > div > select{
+  width: 113px;
+      height: 50px;
+      padding: 0 15px;
+      border-radius: 30px;
+      color: #808080;
+      font-size: 18px;
+      font-weight: DemiLight;
+      border: 1px solid ;
+      appearance: none;
+}
+.header > div > select:active
+.header > div > select:focus{
+  outline: none;
+}
+.header > div > select > option{
+  font-size: 18px;
+  font-weight: DemiLight;
+}
+
+
+/*Section*/
+.section{
+  width: 38%;
+  height: 838px;
+  background-color: #fff;
+  padding: 25px 35px;
+}
+.section > div:nth-child(1){
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.section > div:nth-child(2){
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0;
+}
+.section > div:nth-child(2) > div{
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+.section > div:nth-child(2) > div > span {
+  font-size: 20px;
+  color: #808080;
+}

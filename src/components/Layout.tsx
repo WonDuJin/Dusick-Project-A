@@ -3,17 +3,17 @@ import { useState, useEffect } from 'react';
 import Header from './Headers';
 import Section1 from './Section1';
 
-const Main = styled.main`
-  width: 100%;
-  height: 964px;
-  background-color: #fff;
-  border-radius: 20px;
-  overflow: hidden;
-  & > div {
-    display: flex;
-    justify-content: space-between;
-  }
-`;
+// const Main = styled.main`
+//   width: 100%;
+//   height: 964px;
+//   background-color: #fff;
+//   border-radius: 20px;
+//   overflow: hidden;
+//   & > div {
+//     display: flex;
+//     justify-content: space-between;
+//   }
+// `;
 
 interface DummyData {
   name: string; 
@@ -118,7 +118,7 @@ const Layout = () => {
   ];
   return (
     <>
-      <Main>
+      <div className='main'>
         <Header getStockType={getStockType}></Header>
         <div>
           {StockType === 'kospi' ? (
@@ -127,7 +127,7 @@ const Layout = () => {
             <Section1 data={Dummys2}></Section1>
           )}
         </div>
-      </Main>
+      </div>
     </>
   );
 };
