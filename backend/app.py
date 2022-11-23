@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 import pymysql.cursors
 
-# todo. 현재 파일: app_new
 # 가상환경 활성화: backend\venv\Scripts\activate.bat
 # 디버깅 모드 활성화: set FLASK_DEBUG=1
 # 실행: flask run
@@ -21,8 +20,7 @@ connection = pymysql.connect(
 def index():
     return "Index Page"
 
-@app.route('/companylist')
-# 실행 방법 => http://127.0.0.1:5000/companylist?market=kosdak
+@app.route('/companylist') # 실행 방법 => http://127.0.0.1:5000/companylist?market=kosdak
 def companylist():
     # *1. flask에 내장된 request 객체에 접근해서 클라이언트로부터 받은 요청의 쿼리스트링을 가져옴
     market = request.args.get('market', '')
@@ -68,9 +66,12 @@ def companylist():
 
     # *5. 최종적으로 쿼리문 조립해서 데이터베이스 서버에 요청
     query = ('''
-    WITH temp_table AS ({select}),
+    WITH
+    temp_table AS ({select}),
     temp_name AS (SELECT name, code FROM companylist WHERE {query_or})
-    SELECT * FROM temp_table INNER JOIN temp_name ON temp_table.code = temp_name.code ORDER BY volume DESC LIMIT 28;
+    SELECT * FROM temp_table
+    INNER JOIN temp_name ON temp_table.code = temp_name.code
+    ORDER BY volume DESC LIMIT 28;
     '''.format(select=remove_braket(select), query_or=remove_braket(query_or)))
 
     # query = ('''WITH temp_name AS (SELECT name, code FROM companylist WHERE {query_or}) SELECT * FROM temp_name;'''.format(select=remove_braket(select), query_or=remove_braket(query_or)))
