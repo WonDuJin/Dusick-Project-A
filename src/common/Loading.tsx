@@ -11,7 +11,7 @@ const turnning = keyframes`
 `;
 
 const SetLoading = styled.section`
-  background-color: ${(props) => props.theme.color.main};
+  background-color: ${(props) => props.theme.color.white_gray};
   width: 100%;
   height: 100%;
   display: flex;
@@ -22,7 +22,7 @@ const SetLoading = styled.section`
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 4px solid ${(props) => props.theme.color.white_gray};
+    border: 4px solid ${(props) => props.theme.color.main};
     margin-bottom: 40px;
     position: relative;
     display: flex;
@@ -31,7 +31,7 @@ const SetLoading = styled.section`
     &:before {
       content: '';
       border-radius: 5px;
-      background: ${(props) => props.theme.color.white_gray};
+      background: ${(props) => props.theme.color.main};
       width: 4px;
       height: 50px;
       position: absolute;
@@ -41,7 +41,7 @@ const SetLoading = styled.section`
     }
   }
   & > h1 {
-    color: ${(props) => props.theme.color.white_gray};
+    color: ${(props) => props.theme.color.main};
     font-size: ${(props) => props.theme.fontSize.font_20};
   }
 `;
