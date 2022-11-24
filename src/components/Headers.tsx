@@ -14,17 +14,27 @@ const HeaderSet = styled.header`
   }
   & > div {
     position: relative;
+    display: flex;
+    align-items: center;
     & > span {
       width: 11px;
       height: 6.5px;
       background: url('./assets/Direction.png') center/cover no-repeat;
       position: absolute;
-      right: 15px;
+      right: 42px;
       top: 22px;
+    }
+    & > input[type='text'] {
+      background: ${(props) => props.theme.color.white_gray};
+      border: 1px solid ${(props) => props.theme.color.l_gray};
+      border-radius: 30px;
+      width: 463px;
+      height: 50px;
     }
     & > select {
       width: 113px;
       height: 50px;
+      margin-right: 30px;
       padding: 0 15px;
       border-radius: 30px;
       color: ${(props) => props.theme.color.gray};
@@ -65,6 +75,7 @@ const Header: React.FunctionComponent<outProps> = ({ getStockType }) => {
             <option value={'kosdak'}>KOSDAQ</option>
           </select>
           <span></span>
+          {/* <input type='text' onBlur={getName}></input> */}
         </div>
       </HeaderSet>
     </>

@@ -1,70 +1,34 @@
-import pymysql
-from flask import Flask, jsonify, request
-import pandas as pd
-from sqlalchemy import create_engine
-from tabulate import tabulate
+import pymysql.cursors
+from flask import request
+from dbconnection import db_connection
 
-class dusickdb():
-    #SQL문으로 Companylist 전체 DB 조회"
-  def get_all():
-    conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")
-    cur = conn.cursor(pymysql.cursors.DictCursor)    
+db = db_connection
 
-    cur.execute(f'SELECT code,market,name FROM companylist')
-    dusick_lists = cur.fetchall()   
-
-    return dusick_lists
-
-  def day(market):
-    conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-
-    #프론트에서 이제 이름을 받아오는 걸 설정해주면 됨   
-    
-    
-    #SQL문으로 Companylist DB 조회"
-    cur.execute(f'SELECT code,market,name FROM companylist WHERE market="{market}" LIMIT 10')
-    dusick_lists = cur.fetchall()
-    
-
-    #조회한 DB에서 code, market, name을 변수로 지정
+class DataRoute():
+  
+  def markets(market):
+    cur = db.cursor(pymysql.cursors.DictCursor)
+    cur.execute(f"SELECT market,code,name FROM CompanyList WHERE market = '{market}' ORDER BY RAND() LIMIT 28")
+    res = cur.fetchall()
     data_stack = list()
-    for i in range(len(dusick_lists)):
-      code = dusick_lists[i]["code"]
-      market = dusick_lists[i]["market"]
-      # print([code],[market])     
-      markettype = market.upper()
-      
-      cur.execute(f'SELECT companylist.code AS code,market,name,open,high),low,close,volume,day FROM {market}_{code}_m as api INNER JOIN companylist ON companylist.code = api.code ORDER BY day DESC LIMIT 2')
-      conn.commit()
-      day = cur.fetchall()    
-      data_stack.append(day)
-      df = pd.DataFrame(data_stack)
-      print(tabulate(df, headers='keys', tablefmt='fancy_grid',stralign='center', showindex=True))
-    
-    return day
-
-  def volume(market):
-    conn = pymysql.connect(user="root",passwd="00000000",host="127.0.0.1",db="aitrading_db",charset="utf8")
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-      
-    cur.execute(f'SELECT code,market,name FROM companylist WHERE market="{market}" ORDER BY rand() LIMIT 30')
-    dusick_lists = cur.fetchall()
-    data_stack = list()
-    for i in range(len(dusick_lists)):
-      code = dusick_lists[i]["code"]
-      market = dusick_lists[i]["market"]
-      # print([code],[market])     
-      markettype = market.upper()      
-      
-      cur.execute(f'SELECT companylist.code AS code,market,name,high,low,close,volume,day FROM {market}_{code}_d AS api INNER JOIN companylist ON companylist.code = api.code WHERE day BETWEEN date("2022-01-27") AND date("2022-01-28")+1 ORDER BY day DESC LIMIT 2')
-      conn.commit()
-      volume = cur.fetchall()
-      data_stack.append(volume)
-      df = pd.DataFrame(data_stack)
-      print(tabulate(df, headers='keys', tablefmt='fancy_grid',stralign='center', showindex=True))
-      
+    for i in range(len(res)):
+      code = res[i]["code"]
+      market = res[i]["market"]
+      cur.execute(f'SELECT companylist.code AS code,market,name,high,low,close,volume,day,ROUND((high+low)/2,1) AS mid, ROUND((((high+low)/2)*0.04),2) AS medomesu FROM {market}_{code}_d AS api INNER JOIN companylist ON companylist.code = api.code WHERE day BETWEEN date("2022-01-27") AND date("2022-01-28")+1 ORDER BY day DESC LIMIT 2')
+      res2 = cur.fetchall()
+      data_stack.append(res2)
     return data_stack
+  
+  def getname():
+    if request.method=='POST':
+      datas = request.get_json()
+      value = datas['name']
+      cur = db.cursor(pymysql.cursors.DictCursor)
+      cur.execute(f"SELECT market,code,name FROM CompanyList WHERE NAME = '{value}'")
+      res = cur.fetchall()
+      code = res[0]["code"]
+      market = res[0]["market"]
 
-
-
+      cur.execute(f'SELECT companylist.code AS code,market,name,high,low,close,volume,day,ROUND((high+low)/2,1) AS mid, ROUND((((high+low)/2)*0.04),2) AS medomesu FROM {market}_{code}_d AS api INNER JOIN companylist ON companylist.code = api.code WHERE day BETWEEN date("2022-01-27") AND date("2022-01-28")+1 ORDER BY day DESC LIMIT 2')
+      res2 = cur.fetchall()
+      return res2

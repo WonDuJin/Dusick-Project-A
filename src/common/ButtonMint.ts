@@ -7,8 +7,8 @@
 
 import styled from 'styled-components';
 
-export const ButtonMint = styled.button<{ width: String }>`
-  width: ${(props: any) => props.width};
+export const ButtonMint = styled.button`
+  width: 126px;
   height: 43px;
   height: 50px;
   background-color: transparent;
@@ -21,7 +21,7 @@ export const ButtonMint = styled.button<{ width: String }>`
   transition: ease 0.3s;
   cursor: pointer;
   color: ${(props) => props.theme.color.mint};
-  &:hover {
+  &.active {
     background-color: ${(props) => props.theme.color.mint};
     color: rgba(255, 255, 255, 1);
   }

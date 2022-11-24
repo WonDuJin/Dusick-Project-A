@@ -1,19 +1,16 @@
-import styled from '../Theme/themed-compoents';
+import styled from '../Theme/themed-components';
 import { useState, useEffect } from 'react';
 import Header from './Headers';
+import Loading from '../common/Loading';
 import Section1 from './Section1';
-import axios from 'axios';
+import axiosSet from '../common/axiosSet';
 
 const Main = styled.main`
   width: 100%;
-  height: 964px;
+  height: 100vh;
   background-color: #fff;
   border-radius: 20px;
   overflow: hidden;
-  & > div {
-    display: flex;
-    justify-content: space-between;
-  }
 `;
 
 export interface DataObject {
@@ -28,12 +25,9 @@ export interface DataObject {
   [index: number]: any; // Index Signature
 } // 배열안에있는 객체 프로퍼티 타입 선언
 
-// export interface Datalist extends Array<DataArr> {}
-//DummyData라는 객체를 배열로 확장
-
 const Layout = () => {
   const [StockType, setSTockType] = useState<string>('kospi');
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [data, getData] = useState<DataObject[]>([]);
 
   const getStockType = (Type: string) => {
@@ -42,57 +36,47 @@ const Layout = () => {
 
   useEffect(() => {
     const getDatas = async () => {
-      setLoading(true);
       try {
-        let response = await axios.get(`http://127.0.0.1:5000/${StockType}`);
-        getData(response.data);
+        setLoading(true);
+        await axiosSet.get(`/${StockType}`).then((res) => {
+          getData(res.data);
+        });
       } catch (e) {
         console.log(e);
       }
+      setLoading(false);
     };
     getDatas();
-    setLoading(false);
   }, [StockType]);
   //header에서 받아오는 셀렉트값에 따른 다른 데이터 송출
 
-  console.log(data);
-
   let volumearr: any = [];
-  let pricehigharr: any = [];
-  // let pricearr: any = [];
   data.forEach((value) => {
-    volumearr.push([value[0], { close: value[1].close }]);
+    volumearr.push([
+      value[0],
+      {
+        gap: value[0].close - value[1].close,
+        percent: (value[0].close - value[1].close) / (value[0].close / 100),
+        mid: value[1].mid,
+        medomesu: value[1].medomesu,
+      },
+    ]);
   });
   const setvolume = volumearr.sort(
     (a: any, b: any) => b[0].volume - a[0].volume
   );
-  data.forEach((value) => {
-    pricehigharr.push([value[0], { gap: value[0].close - value[1].close }]);
-  });
-  const setprice = pricehigharr.sort((a: any, b: any) => b[1].gap - a[1].gap);
-  const setlowpirce = pricehigharr.sort(
-    (a: any, b: any) => a[1].gap - b[1].gap
-  );
-  // console.log(setlowpirce);
+
   return (
     <>
       <Main>
         <Header getStockType={getStockType}></Header>
-        <div>
-          {StockType === 'kospi' ? (
-            <Section1
-              volume={setvolume}
-              high={setprice}
-              low={setlowpirce}
-              stocks={StockType}></Section1>
-          ) : (
-            <Section1
-              volume={setvolume}
-              high={setprice}
-              low={setlowpirce}
-              stocks={StockType}></Section1>
-          )}
-        </div>
+        {loading ? (
+          <Loading></Loading>
+        ) : data && StockType === 'kospi' ? (
+          <Section1 volume={setvolume}></Section1>
+        ) : (
+          <Section1 volume={setvolume}></Section1>
+        )}
       </Main>
     </>
   );

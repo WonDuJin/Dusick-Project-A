@@ -1,23 +1,17 @@
-from flask import Flask, jsonify, request
-from model import dusickdb
-
-
-
+from flask import Flask,jsonify,request
+from flask_cors import CORS
+from model import DataRoute
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
-@app.route('/companylist',methods=['POST','GET'])
-def test():
-  data = dusickdb.get_all()
+CORS(app,resources={r'*':{'origins':'http://localhost:3000'}},supports_credentials=True)
+
+@app.route('/<market>',methods=['GET'])
+def allSearch(market):
+  data = DataRoute.markets(market)
   return jsonify(data)
 
-@app.route('/<market>',methods =['GET','POST'])
-def day(market):
+@app.route('/getnames',methods=['POST'])
+def getname():
+  data= DataRoute.getname()
+  return jsonify(data)
   
-  data = dusickdb.day(market)
-  
-  return data
-
-@app.route('/<market>/volume',methods =['GET','POST'])
-def volume(market):
-  data = dusickdb.volume(market)
-  return data
