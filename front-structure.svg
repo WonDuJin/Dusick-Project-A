@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="354px" preserveAspectRatio="none" style="width:662px;height:354px;" version="1.1" viewBox="0 0 662 354" width="662px" zoomAndPan="magnify"><defs/><g><ellipse cx="113.1006" cy="24.3774" fill="#F8F8F8" rx="19.9706" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="24" x="101.1006" y="27.8618">App</text><ellipse cx="610.3138" cy="264.3774" fill="#F8F8F8" rx="41.1838" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="54" x="583.3138" y="267.8618">axiosSet</text><!--MD5=[16f923149cd0d8f6af4e95e783b7df77]
+entity _ButtonMint--><rect fill="#F8F8F8" height="33.9688" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="85" x="204.63" y="185"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="65" x="214.63" y="206.1387">ButtonMint</text><!--MD5=[5534206f8ff8a6f935aee0db887360e4]
+entity _ButtonPurple--><rect fill="#F8F8F8" height="33.9688" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="99" x="303.63" y="185"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="79" x="313.63" y="206.1387">ButtonPurple</text><ellipse cx="223.1067" cy="143.8774" fill="#F8F8F8" rx="40.4767" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="53" x="196.6067" y="147.3618">Headers</text><!--MD5=[ebc6c3dcecd564ec105baf16602653fb]
+entity _Layout--><rect fill="#F8F8F8" height="33.9688" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="61" x="146.63" y="69"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="41" x="156.63" y="90.1387">Layout</text><ellipse cx="171.9792" cy="201.8774" fill="#F8F8F8" rx="17.8492" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="21" x="161.4792" y="205.3618">List</text><ellipse cx="131.0711" cy="143.8774" fill="#F8F8F8" rx="36.9411" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="48" x="107.0711" y="147.3618">Loading</text><ellipse cx="219.1905" cy="24.7121" fill="#F8F8F8" rx="71.5605" ry="16.7121" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="160.1905" y="28.1965">react-app-env.d</text><ellipse cx="318.1067" cy="143.8774" fill="#F8F8F8" rx="40.4767" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="53" x="291.6067" y="147.3618">Section1</text><ellipse cx="471.0077" cy="202.1755" fill="#F8F8F8" rx="53.8777" ry="13.1755" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="74" x="434.0077" y="205.6599">SelectStock</text><ellipse cx="362.2518" cy="24.4244" fill="#F8F8F8" rx="57.6218" ry="13.9244" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="84" x="320.2518" y="27.9087">setupTests</text><ellipse cx="41.8937" cy="24.3774" fill="#F8F8F8" rx="19.2635" ry="12.8774" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="23" x="30.3937" y="27.8618">src</text><!--MD5=[108e742113d76f029d499b631a61c8e2]
+entity _theme--><rect fill="#F8F8F8" height="33.9688" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="59" x="125.63" y="310"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="39" x="135.63" y="331.1387">theme</text><ellipse cx="106.0377" cy="264.5815" fill="#F8F8F8" rx="75.9077" ry="17.5815" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="128" x="42.0377" y="268.0659">themed-components</text><!--MD5=[fca268e5ce3d6427a391a740fbfc729a]
+link App to _Layout--><path d="M123.987,35.593 C132.626,43.625 144.987,55.117 155.614,64.997 " fill="none" id="App-&gt;_Layout" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="159.441,68.554,155.5735,59.4963,155.7792,65.1494,150.1261,65.3551,159.441,68.554" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[34fdbb325ea911a357da1b0a7db46fbe]
+link _Layout to axiosSet--><path d="M207.665,88.446 C274.669,92.948 437.357,111.267 547.13,185 C570.997,201.031 590.209,228.881 600.89,246.7365 " fill="none" id="_Layout-&gt;axiosSet" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="603.673,251.4894,602.5763,241.7018,601.1462,247.1749,595.6731,245.7448,603.673,251.4894" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[53fa64b4c256b54789c538b36c5b0d78]
+link _Layout to Headers--><path d="M190.435,103.198 C196.614,110.72 203.936,119.634 210.083,127.117 " fill="none" id="_Layout-&gt;Headers" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="213.362,131.109,210.7402,121.6155,210.1883,127.2454,204.5584,126.6935,213.362,131.109" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[4343b93271f884ea2ae3e97bdfbcf34b]
+link _Layout to Loading--><path d="M163.825,103.198 C157.646,110.72 150.324,119.634 144.177,127.117 " fill="none" id="_Layout-&gt;Loading" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="140.898,131.109,149.7016,126.6935,144.0717,127.2454,143.5198,121.6155,140.898,131.109" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[529b6bbfd79de2a502a1cb65c1580b97]
+link _Layout to Section1--><path d="M207.725,99.151 C231.922,108.761 265.471,122.086 289.22,131.518 " fill="none" id="_Layout-&gt;Section1" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="294.132,133.469,287.2448,126.4286,289.4853,131.6229,284.291,133.8634,294.132,133.469" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[00c3a7fba924d6ed06dcd0ebf88704d9]
+link _Layout to themed-components--><path d="M146.382,93.192 C125.731,99.122 100.0237,110.345 87.1302,131 C65.61,165.475 82.3591,214.682 95.1341,242.405 " fill="none" id="_Layout-&gt;themed-components" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="97.3032,246.9935,97.0727,237.1473,95.1661,242.4732,89.8402,240.5667,97.3032,246.9935" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[35e88b9e74661d67ad72d245655ed5f6]
+link List to axiosSet--><path d="M183.751,212.013 C187.781,214.698 192.464,217.358 197.13,219 C264.063,242.55 472.12,256.1889 564.798,261.2385 " fill="none" id="List-&gt;axiosSet" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="569.929,261.5157,561.1581,257.0355,564.9363,261.2457,560.7261,265.0239,569.929,261.5157" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[0ce32eea3f402bd8885e5d2e522d53b4]
+link List to _theme--><path d="M178.41,214.477 C186.08,230.055 197.107,258.6324 189.13,282 C186.238,290.4738 180.978,298.5831 175.446,305.4796 " fill="none" id="List-&gt;_theme" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="171.986,309.6094,180.833,305.2816,175.198,305.7775,174.702,300.1424,171.986,309.6094" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[cf003f3ba9cc48e42da99683695ef110]
+link List to themed-components--><path d="M161.526,212.72 C152.36,221.123 138.828,233.527 127.433,243.973 " fill="none" id="List-&gt;themed-components" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="123.66,247.4311,132.9976,244.2991,127.3461,244.0528,127.5924,238.4013,123.66,247.4311" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[373bfdf569699728863a384bd00b519c]
+link Loading to themed-components--><path d="M127.888,157.213 C125.837,165.112 123.194,175.633 121.13,185 C116.919,204.113 112.794,225.996 109.939,241.794 " fill="none" id="Loading-&gt;themed-components" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="109.022,246.9051,114.5506,238.7544,109.9062,241.9839,106.6767,237.3396,109.022,246.9051" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[0c913e9d18317df75a8152f14c93e2dd]
+link Section1 to _ButtonMint--><path d="M303.762,156.332 C294.605,163.555 282.497,173.105 271.829,181.52 " fill="none" id="Section1-&gt;_ButtonMint" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="267.666,184.802,277.2093,182.3679,271.5914,181.7051,272.2542,176.0872,267.666,184.802" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[b6fa93f548ae7756bc0adee35448bbe3]
+link Section1 to _ButtonPurple--><path d="M325.553,156.876 C329.819,163.703 335.298,172.469 340.247,180.387 " fill="none" id="Section1-&gt;_ButtonPurple" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="342.93,184.68,341.552,174.928,340.28,180.44,334.768,179.168,342.93,184.68" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[99530b154b24d28c5348cdf2025f3779]
+link Section1 to List--><path d="M287.985,152.696 C263.003,159.605 226.896,170.83 197.13,185 C194.455,186.274 191.72,187.782 189.088,189.356 " fill="none" id="Section1-&gt;List" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="184.494,192.223,194.2465,190.8488,188.735,189.5747,190.0092,184.0632,184.494,192.223" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[dd5254c1533ae579916505d35e53edc2]
+link Section1 to SelectStock--><path d="M343.395,154.247 C369.391,163.762 409.995,178.624 438.427,189.03 " fill="none" id="Section1-&gt;SelectStock" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="443.234,190.79,436.157,183.9404,438.5386,189.0715,433.4075,191.4531,443.234,190.79" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[05976e5a4ba0964ef64d83582052846b]
+link Section1 to _theme--><path d="M358.655,145.234 C432.636,147.118 577.932,158.39 532.13,219 C490.245,274.4274 275.263,309.5157 190.016,321.4417 " fill="none" id="Section1-&gt;_theme" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="184.835,322.1603,194.2993,324.8855,189.7876,321.4732,193.1999,316.9614,184.835,322.1603" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[c10fc1e695d1eea572114174ee16b07b]
+link Section1 to themed-components--><path d="M287.683,152.715 C281.861,154.161 275.812,155.643 270.13,157 C215.598,170.022 191.536,150.774 147.13,185 C128.652,199.242 117.675,224.179 111.798,242.129 " fill="none" id="Section1-&gt;themed-components" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="110.274,246.9923,116.7829,239.6008,111.7696,242.2212,109.1492,237.2079,110.274,246.9923" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[f39319d2be27e673ece5aa4b202a2579]
+link <b>src</b> to App--><path d="M61.8216,24.5 C70.4524,24.5 79.0831,24.5 87.7139,24.5 " fill="none" id="&lt;b&gt;src&lt;/b&gt;-&gt;App" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="93.0878,24.5,84.0878,20.5,88.0878,24.5,84.0878,28.5,93.0878,24.5" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[aae1e13c5e6c7207ea7a13ac8898d3e4]
+link <b>src</b> to _theme--><path d="M36.3626,37.185 C26.6622,57.947 8.1302,102.864 8.1302,143 C8.1302,143 8.1302,143 8.1302,203 C8.1302,238.738 -0.3906,255.0926 23.1302,282 C47.5519,309.938 90.1932,320.1902 120.395,323.922 " fill="none" id="&lt;b&gt;src&lt;/b&gt;-&gt;_theme" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="125.506,324.5064,117.0192,319.5089,120.5384,323.9378,116.1095,327.457,125.506,324.5064" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[c919bd690272bef0dc69a799dec25907]
+link <b>src</b> to themed-components--><path d="M42.3852,37.782 C43.42,69.159 48.6544,154.35 75.1302,219 C78.5579,227.37 83.7783,235.724 88.9632,242.896 " fill="none" id="&lt;b&gt;src&lt;/b&gt;-&gt;themed-components" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="92.1706,247.1987,89.998,237.5925,89.182,243.1901,83.5843,242.3741,92.1706,247.1987" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[4a02d3564225a0d1b00adce9b8c0e96c]
+link themed-components to _theme--><path d="M119.52,282.0319 C125.449,289.3528 132.48,298.0336 138.721,305.74 " fill="none" id="themed-components-&gt;_theme" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="142.096,309.9063,139.5403,300.3948,138.9492,306.0207,133.3233,305.4296,142.096,309.9063" style="stroke: #000000; stroke-width: 0.5;"/><script type="text/plantuml"><![CDATA[MD5=[2596e0bd401d4fe12749393b50de7096]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 14
+skinparam ranksep 28
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+(App)
+(axiosSet)
+rectangle "ButtonMint" as _ButtonMint
+rectangle "ButtonPurple" as _ButtonPurple
+(Headers)
+rectangle "Layout" as _Layout
+(List)
+(Loading)
+(<b>react-app-env.d</b>)
+(Section1)
+(SelectStock)
+(<b>setupTests</b>)
+(<b>src</b>)
+rectangle "theme" as _theme
+(themed-components)
+
+
+(App) --> _Layout
+_Layout --> (axiosSet)
+_Layout --> (Headers)
+_Layout --> (Loading)
+_Layout --> (Section1)
+_Layout --> (themed-components)
+(List) --> (axiosSet)
+(List) --> _theme
+(List) --> (themed-components)
+(Loading) --> (themed-components)
+(Section1) --> _ButtonMint
+(Section1) --> _ButtonPurple
+(Section1) --> (List)
+(Section1) --> (SelectStock)
+(Section1) --> _theme
+(Section1) --> (themed-components)
+(<b>src</b>) -[thickness=1]> (App)
+(<b>src</b>) -[thickness=1]> _theme
+(<b>src</b>) -[thickness=1]> (themed-components)
+(themed-components) --> _theme
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>
