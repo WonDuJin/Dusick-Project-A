@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 CORS(app,resources={r'*':{'origins':'http://localhost:3000'}},supports_credentials=True)
 
-#kospi or kosdak을 URL에 입력하면 이를 매개변수로 받아 조회하도록 설정
+#kospi or kosdak을 URL의 PORT번호 뒤에 입력하면 이를 매개변수로 받아 조회하도록 설정
 @app.route('/<market>',methods=['GET'])
 def allSearch(market):
   data = DataRoute.markets(market)
