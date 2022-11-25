@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import Logo from '../../public/asset/Logo.png'
+import Direction from '../../public/asset/Direction.png'
+
 
 const HeaderSet = styled.header`
   width: 100%;
@@ -19,7 +22,7 @@ const HeaderSet = styled.header`
     & > span {
       width: 11px;
       height: 6.5px;
-      background: url('./assets/Direction.png') center/cover no-repeat;
+      background: url(${Direction}) center/cover no-repeat;
       position: absolute;
       right: 42px;
       top: 22px;
@@ -68,7 +71,7 @@ const Header: React.FunctionComponent<outProps> = ({ getStockType }) => {
   return (
     <>
       <HeaderSet>
-        <img src='/asset/Logo.png' alt='logo'></img>
+        <img src= {Logo} alt='Logo'></img>
         <div>
           <select onChange={Typeget}>
             <option value={'kospi'}>KOSPI</option>

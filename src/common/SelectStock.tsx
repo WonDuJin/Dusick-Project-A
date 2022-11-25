@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Select from '../../public/asset/Choice.png'
+
 
 const Setselect = styled.div`
   display: flex;
@@ -28,7 +30,7 @@ const Selectstock = () => {
   return (
     <Setselect>
       <div>
-        <img src='./assets/Choice.png' alt='select'></img>
+        <img src={Select} alt='select'></img>
         <p>종목을 선택해 주세요</p>
       </div>
     </Setselect>

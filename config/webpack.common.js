@@ -11,19 +11,20 @@ module.exports = {
         test : /\.(ts|tsx|js|jsx)$/,
         use : "babel-loader",
         exclude : /node_modules/,
-      },
+      },     
       {
-        test: /\.(jpe?g|png|gif)$/i,
+        test: /\.(png|jpg|svg|gif)$/,
         use: [
           {
             loader: "url-loader",
             options: {
-              limit: 1000000,
-              name: "./public/asset/[name].[hash:8].[ext]",            
+              limit: 10000,
+              publicPath : './dist/',
+              name: "[name].[ext]?[hash]",              
             }
           }
         ]
-      }
+      } 
     ],
   },
   plugins : [

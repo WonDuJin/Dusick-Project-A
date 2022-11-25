@@ -23,19 +23,7 @@ module.exports = merge(common, {
           MiniCssExtractPlugin.loader,
           "css-loader",          
         ],
-      },
-      {
-        test: /\.(jpe?g|png|gif)$/i,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 100000,
-              name: "./public/asset/[name].[hash:8].[ext]",              
-            }
-          }
-        ]
-      }
+      },      
     ],
   },
   plugins: [new MiniCssExtractPlugin()],
