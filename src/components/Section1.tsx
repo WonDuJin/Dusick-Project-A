@@ -27,21 +27,21 @@ const Section1Set = styled.section`
       margin-bottom: 20px;
     }
   }
-  .section > div:nth-child(1) > div:nth-child(2) {
+  .section > div:nth-child(2) {
     width: 62%;
     background-color: ${(props) => props.theme.color.white_gray};
-    .section > div:nth-child(1) > div:nth-child(2) > div {
+    & > div {
       padding: 78px 86px;
-      .section > div:nth-child(1) > div:nth-child(2) > div > h1 {
+      & > h1 {
         font-size: ${(props) => props.theme.fontSize.font_36};
-        .section > div:nth-child(1) > div:nth-child(2) > div > h1 > span {
+        & > span {
           display: inline-block;
           margin-left: 20px;
           font-weight: ${(props) => props.theme.fontWeight.Bold};
           font-size: ${(props) => props.theme.fontSize.font_28};
         }
       }
-      .section > div:nth-child(2) {
+      & > div:nth-child(2) {
         width: 100%;
         padding: 76px 0;
         display: grid;
@@ -49,36 +49,36 @@ const Section1Set = styled.section`
         row-gap: 46px;
         border-bottom: 1px dashed ${(props) => props.theme.color.m_gray};
         margin-bottom: 15px;
-        .section > div:nth-child(2) > div {
+        & > div {
           font-weight: ${(props) => props.theme.fontWeight.Medium};
-          .section > div:nth-child(2) > div > span:nth-child(1) {
+          & > span:nth-child(1) {
             display: block;
             font-size: ${(props) => props.theme.fontSize.font_20};
             color: ${(props) => props.theme.color.m_gray};
           }
-          .section > div:nth-child(2) > div > span:nth-child(2) {
+          & > span:nth-child(2) {
             font-size: ${(props) => props.theme.fontSize.font_28};
             color: ${(props) => props.theme.color.black};
           }
         }
       }
-      .section > p:nth-child(3) {
+      & > p:nth-child(3) {
         font-size: ${(props) => props.theme.fontSize.font_15};
         color: ${(props) => props.theme.color.m_gray};
         margin-bottom: 80px;
       }
-      .section > div:nth-child(4) {
+      & > div:nth-child(4) {
         display: flex;
         align-items: center;
-        .section > div:nth-child(4) > div:nth-child(1) {
+        & > div:nth-child(1) {
           width: 40%;
-          .section > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
+          & > div:nth-child(1) {
             width: 68%;
             display: flex;
             justify-content: space-between;
             margin-bottom: 70px;
           }
-          .section > div:nth-child(4) > div:nth-child(2) {
+          & > div:nth-child(2) {
             display: flex;
             align-items: center;
             input[type='number'] {
@@ -94,7 +94,7 @@ const Section1Set = styled.section`
                 font-size: ${(props) => props.theme.fontSize.font_36};
               }
             }
-            .section > div:nth-child(4) > div:nth-child(2)> span {
+            & > span {
               font-size: ${(props) => props.theme.fontSize.font_50};
               color: ${(props) => props.theme.color.black};
             }
@@ -216,7 +216,7 @@ const Section1 = ({ volume }: { volume: any }) => {
 
   return (
     <>
-      <div className='section'>
+      <div className='s'>
         <div>
           <div>
             {btn.map((value) => {

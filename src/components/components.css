@@ -177,8 +177,8 @@ border-bottom: 1px solid grey;
 .section > div:nth-child(2)> div:nth-child(4) > div:nth-child(1) > div:nth-child(2) {
             display: flex;
             align-items: center;
-}
-.section > div:nth-child(2)> div:nth-child(4) > div:nth-child(1) > div:nth-child(2) > input[type='number'] {
+          }
+            input[type='number'] {
               background-color: transparent;
               -webkit-appearance: none;
               -moz-appearance: textfield;
@@ -192,7 +192,7 @@ border-bottom: 1px solid grey;
                 font-size: 36px;
               }
             
-.section > div:nth-child(2)> div:nth-child(4) > div:nth-child(1) > div:nth-child(2) > span {
+.section > div:nth-child(2)> div:nth-child(4) > div:nth-child(1) > span {
               font-size: 50px;
               color: black;
             }
