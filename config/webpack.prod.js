@@ -40,13 +40,10 @@ module.exports = merge(common, {
       }),
       new CssMinimizerPlugin(),
     ],
+
+    //중복된 모듈을 합치는 것
     splitChunks: {
       chunks: "all",
     },
-  },
-  performance: {
-    hints: false,
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
-  },
+  },  
 });

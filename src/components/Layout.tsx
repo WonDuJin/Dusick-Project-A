@@ -5,13 +5,13 @@ import Loading from '../common/Loading';
 import Section1 from './Section1';
 import axiosSet from '../common/axiosSet';
 
-const Main = styled.main`
-  width: 100%;
-  height: 100vh;
-  background-color: #fff;
-  border-radius: 20px;
-  overflow: hidden;
-`;
+// const Main = styled.main`
+//   width: 100%;
+//   height: 100vh;
+//   background-color: #fff;
+//   border-radius: 20px;
+//   overflow: hidden;
+// `;
 
 export interface DataObject {
   close: string;
@@ -68,7 +68,7 @@ const Layout = () => {
 
   return (
     <>
-      <Main>
+      <div className='main'>
         <Header getStockType={getStockType}></Header>
         {loading ? (
           <Loading></Loading>
@@ -77,7 +77,7 @@ const Layout = () => {
         ) : (
           <Section1 volume={setvolume}></Section1>
         )}
-      </Main>
+      </div>
     </>
   );
 };

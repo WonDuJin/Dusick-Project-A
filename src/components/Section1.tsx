@@ -12,14 +12,14 @@ const Section1Set = styled.section`
   background-color: #fff;
   display: flex;
   justify-content: space-between;
-  & > div:nth-child(1) {
+  .section > div:nth-child(1) {
     width: 38%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     padding: 25px 35px;
     overflow-y: scroll;
-    & > div:nth-child(1) {
+    .section > div:nth-child(1) > div:nth-child(1) {
       width: 100%;
       display: flex;
       align-items: center;
@@ -27,21 +27,21 @@ const Section1Set = styled.section`
       margin-bottom: 20px;
     }
   }
-  & > div:nth-child(2) {
+  .section > div:nth-child(1) > div:nth-child(2) {
     width: 62%;
     background-color: ${(props) => props.theme.color.white_gray};
-    & > div {
+    .section > div:nth-child(1) > div:nth-child(2) > div {
       padding: 78px 86px;
-      & > h1 {
+      .section > div:nth-child(1) > div:nth-child(2) > div > h1 {
         font-size: ${(props) => props.theme.fontSize.font_36};
-        & > span {
+        .section > div:nth-child(1) > div:nth-child(2) > div > h1 > span {
           display: inline-block;
           margin-left: 20px;
           font-weight: ${(props) => props.theme.fontWeight.Bold};
           font-size: ${(props) => props.theme.fontSize.font_28};
         }
       }
-      & > div:nth-child(2) {
+      .section > div:nth-child(2) {
         width: 100%;
         padding: 76px 0;
         display: grid;
@@ -49,36 +49,36 @@ const Section1Set = styled.section`
         row-gap: 46px;
         border-bottom: 1px dashed ${(props) => props.theme.color.m_gray};
         margin-bottom: 15px;
-        & > div {
+        .section > div:nth-child(2) > div {
           font-weight: ${(props) => props.theme.fontWeight.Medium};
-          & > span:nth-child(1) {
+          .section > div:nth-child(2) > div > span:nth-child(1) {
             display: block;
             font-size: ${(props) => props.theme.fontSize.font_20};
             color: ${(props) => props.theme.color.m_gray};
           }
-          & > span:nth-child(2) {
+          .section > div:nth-child(2) > div > span:nth-child(2) {
             font-size: ${(props) => props.theme.fontSize.font_28};
             color: ${(props) => props.theme.color.black};
           }
         }
       }
-      & > p:nth-child(3) {
+      .section > p:nth-child(3) {
         font-size: ${(props) => props.theme.fontSize.font_15};
         color: ${(props) => props.theme.color.m_gray};
         margin-bottom: 80px;
       }
-      & > div:nth-child(4) {
+      .section > div:nth-child(4) {
         display: flex;
         align-items: center;
-        & > div:nth-child(1) {
+        .section > div:nth-child(4) > div:nth-child(1) {
           width: 40%;
-          & > div:nth-child(1) {
+          .section > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
             width: 68%;
             display: flex;
             justify-content: space-between;
             margin-bottom: 70px;
           }
-          & > div:nth-child(2) {
+          .section > div:nth-child(4) > div:nth-child(2) {
             display: flex;
             align-items: center;
             input[type='number'] {
@@ -94,7 +94,7 @@ const Section1Set = styled.section`
                 font-size: ${(props) => props.theme.fontSize.font_36};
               }
             }
-            & > span {
+            .section > div:nth-child(4) > div:nth-child(2)> span {
               font-size: ${(props) => props.theme.fontSize.font_50};
               color: ${(props) => props.theme.color.black};
             }
@@ -216,7 +216,7 @@ const Section1 = ({ volume }: { volume: any }) => {
 
   return (
     <>
-      <Section1Set>
+      <div className='section'>
         <div>
           <div>
             {btn.map((value) => {
@@ -351,7 +351,7 @@ const Section1 = ({ volume }: { volume: any }) => {
         ) : (
           <Selectstock></Selectstock>
         )}
-      </Section1Set>
+      </div>
     </>
   );
 };
