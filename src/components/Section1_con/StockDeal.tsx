@@ -111,8 +111,7 @@ const StockDeal = ({ StockData }: { StockData: any }) => {
                 key={value.id}
                 onClick={getsell}
                 value={value.value}
-                className={sellbuy === value.value ? 'active' : ''}
-              >
+                className={sellbuy === value.value ? 'active' : ''}>
                 {value.value}
               </ButtonMint>
             );
@@ -122,8 +121,7 @@ const StockDeal = ({ StockData }: { StockData: any }) => {
           <input
             type='number'
             onChange={getCount}
-            placeholder={'숫자만 입력'}
-          ></input>
+            placeholder={'숫자만 입력'}></input>
           <span>주</span>
         </div>
       </div>

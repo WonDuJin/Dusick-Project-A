@@ -49,6 +49,7 @@ const Layout = () => {
     };
     getDatas();
   }, [StockType]);
+
   //header에서 받아오는 셀렉트값에 따른 다른 데이터 송출
 
   let volumearr: any = [];
@@ -72,8 +73,7 @@ const Layout = () => {
       <Main>
         <Header
           getStockType={getStockType}
-          setSearchData={setSearchData}
-        ></Header>
+          setSearchData={setSearchData}></Header>
         {loading ? (
           <Loading></Loading>
         ) : data && StockType === 'kospi' ? (
