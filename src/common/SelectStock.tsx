@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 
 const Setselect = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${(props) => props.theme.flex.flexCenterColumn}
   width: 62%;
   background-color: ${(props) => props.theme.color.white_gray};
   & > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    ${(props) => props.theme.flex.flexCenterColumn}
+    height: 200px !important;
     & > img {
       width: 71px;
       height: 91px;
@@ -28,7 +23,7 @@ const Selectstock = () => {
   return (
     <Setselect>
       <div>
-        <img src='./assets/Choice.png' alt='select'></img>
+        <img src='/asset/Choice.png' alt='select'></img>
         <p>종목을 선택해 주세요</p>
       </div>
     </Setselect>

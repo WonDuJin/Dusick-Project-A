@@ -10,13 +10,10 @@ import styled from 'styled-components';
 export const ButtonSetPurle = styled.button`
   height: 50px;
   background-color: transparent;
-  border: none;
-  border-radius: 1rem;
+  ${(props) => props.theme.border.borderSet}
   font-size: ${(props) => props.theme.fontSize.font_28};
-  display: flex;
+  ${(props) => props.theme.flex.flexCenter.flexCenter}
   padding: 0 10px;
-  align-items: center;
-  justify-content: center;
   transition: ease-out 0.3s;
   cursor: pointer;
   color: ${(props) => props.theme.color.black};

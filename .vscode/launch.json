@@ -5,12 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python: 현재 파일",
-      "type": "python",
+      "type": "chrome",
       "request": "launch",
-      "program": "${file}",
-      "console": "integratedTerminal",
-      "justMyCode": true
+      "name": "localhost에 대해 Chrome 시작",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }

@@ -1,9 +1,9 @@
-import styled from '../Theme/themed-components';
+import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Header from './Headers';
-import Loading from '../common/Loading';
+import Loading from '@/common/Loading';
 import Section1 from './Section1';
-import axiosSet from '../common/axiosSet';
+import axiosSet from '@/common/axiosSet';
 
 const Main = styled.main`
   width: 100%;
@@ -29,8 +29,9 @@ const Layout = () => {
   const [StockType, setSTockType] = useState<string>('kospi');
   const [loading, setLoading] = useState<boolean>(true);
   const [data, getData] = useState<DataObject[]>([]);
+  const [searchData, setSearchData] = useState<any>(null);
 
-  const getStockType = (Type: string) => {
+  const getStockType = (Type: string): void => {
     setSTockType(Type);
   };
 
@@ -69,13 +70,16 @@ const Layout = () => {
   return (
     <>
       <Main>
-        <Header getStockType={getStockType}></Header>
+        <Header
+          getStockType={getStockType}
+          setSearchData={setSearchData}
+        ></Header>
         {loading ? (
           <Loading></Loading>
         ) : data && StockType === 'kospi' ? (
-          <Section1 volume={setvolume}></Section1>
+          <Section1 volume={setvolume} data={searchData}></Section1>
         ) : (
-          <Section1 volume={setvolume}></Section1>
+          <Section1 volume={setvolume} data={searchData}></Section1>
         )}
       </Main>
     </>

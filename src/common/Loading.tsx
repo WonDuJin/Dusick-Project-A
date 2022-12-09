@@ -1,5 +1,5 @@
 import { keyframes } from 'styled-components';
-import styled from '../Theme/themed-components';
+import styled from '@/Theme/theme_set';
 
 const turnning = keyframes`
   0%{
@@ -14,10 +14,7 @@ const SetLoading = styled.section`
   background-color: ${(props) => props.theme.color.white_gray};
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${(props) => props.theme.flex.flexCenterColumn}
   & > div {
     width: 120px;
     height: 120px;
@@ -25,9 +22,7 @@ const SetLoading = styled.section`
     border: 4px solid ${(props) => props.theme.color.main};
     margin-bottom: 40px;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${(props) => props.theme.flex.flexCenter}
     &:before {
       content: '';
       border-radius: 5px;

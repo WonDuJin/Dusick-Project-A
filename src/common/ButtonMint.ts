@@ -10,14 +10,11 @@ import styled from 'styled-components';
 export const ButtonMint = styled.button`
   width: 126px;
   height: 43px;
-  height: 50px;
   background-color: transparent;
   border: 1px solid ${(props) => props.theme.color.mint};
   border-radius: 1rem;
   font-size: ${(props) => props.theme.fontSize.font_18};
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${(props) => props.theme.flex.flexCenter.flexCenter}
   transition: ease 0.3s;
   cursor: pointer;
   color: ${(props) => props.theme.color.mint};
