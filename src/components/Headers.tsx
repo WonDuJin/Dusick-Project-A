@@ -1,7 +1,6 @@
 import axiosSet from '@/common/axiosSet';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import SearchItem from './searchItem';
 
 const HeaderSet = styled.header`
   width: 100%;
@@ -79,12 +78,6 @@ const Header = ({
   getStockType: (Type: string) => void;
   setSearchData: any;
 }) => {
-  const [data, setData] = useState<any>(null);
-
-  useEffect(() => {
-    setSearchData(null);
-  }, [data]);
-
   const Typeget = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     getStockType(e.target.value);
   };
@@ -105,33 +98,6 @@ const Header = ({
       });
     }
   }, []);
-  // select에 onChange가 일어날 때 select value  값을 부모 컴포넌트에 보냄
-
-  // const search = useCallback((e: any): void => {
-  //   new Promise<void>((resolve) => {
-  //     resolve(e.target.value);
-  //   }).then((value) => {
-  //     if (data === null) {
-  //       axiosSet.get(`/getsearchinput/${value}`).then((res) => {
-  //         console.log(res.data);
-  //         setData(res.data);
-  //       });
-  //     } else {
-  //       setData(null);
-  //     }
-  //   });
-  // }, []);
-
-  // const clickItem = useCallback((target: any): void => {
-  //   new Promise<void>((resolve) => {
-  //     resolve(target);
-  //   }).then((value) => {
-  //     axiosSet.get(`/getsearch/${value}`).then((res) => {
-  //       setSearchData(res.data);
-  //     });
-  //   });
-  // }, []);
-
   return (
     <>
       <HeaderSet>
@@ -146,24 +112,8 @@ const Header = ({
             type='text'
             placeholder='Search'
             id='search'
-            onKeyDown={DataGet}
-            // onKeyUp={search}
-          ></input>
+            onKeyDown={DataGet}></input>
         </div>
-        {/* {data && data !== null ? (
-          <div>
-            {data.map((value: any, index: number) => {
-              return (
-                <SearchItem
-                  key={index}
-                  data={value}
-                  setData={setData}
-                  clickItem={clickItem}
-                ></SearchItem>
-              );
-            })}
-          </div>
-        ) : null} */}
       </HeaderSet>
     </>
   );
